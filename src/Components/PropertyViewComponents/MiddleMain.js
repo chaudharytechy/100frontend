@@ -22,7 +22,7 @@ import {
 import { useProductContext } from "../../Context/productContext";
 import CourselBhk from "./CourselBhk";
 
-const API= "https://www.100acress.com/preLaunch/view";
+const API= "https://api.100acress.com/preLaunch/view";
 
 function MiddleMain() {
   const {singleProperty,isSingleLoading,getSingleProduct,PreLuanchSimilarProperties,PreLuanchFeatProperties} = useProductContext();

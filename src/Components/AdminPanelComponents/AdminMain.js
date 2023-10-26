@@ -57,10 +57,10 @@ function AdminMain() {
   function HandleLog(){
     setLoggedIn(!loggedIn);
   }
-  const URLREGISTER="https://www.100acress.com/register";
-  const URLLOGIN="https://www.100acress.com/verify_Login"
-  const URLFORM="https://www.100acress.com/preLaunch/insert"
-  const URLGETALL="https://www.100acress.com/preLaunch/viewAll"
+  const URLREGISTER="https://api.100acress.com/register";
+  const URLLOGIN="https://api.100acress.com/verify_Login"
+  const URLFORM="https://api.100acress.com/preLaunch/insert"
+  const URLGETALL="https://api.100acress.com/preLaunch/viewAll"
    
   
   const[formDataRegister,setFormDataRegister] = useState({
