@@ -21,7 +21,7 @@ function FinalNavBar() {
       
         <div className='1euNB' style={{cursor:"pointer"}}>
         <Link to={ROOT}></Link>
-          <img src="https://www.100acress.com/assets/images/aadhar.png" alt='' width='200' />
+          <img src="../../Images/mainLogo.png" alt='' width='200' />
         </div>
         
         <div
