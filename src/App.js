@@ -20,6 +20,7 @@ import Footer from './Components/Actual_Components/Footer';
 import PageNotFound from './Pages/PageNotFound';
 import ViewProperty from './Components/AdminPanelComponents/ViewProperty';
 
+
 function App() {
   return (
     <Wrapper className="section">

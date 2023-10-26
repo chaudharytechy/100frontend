@@ -2,6 +2,8 @@ import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 import Image from "./footerImage.png"
 import styled from 'styled-components';
+import { ADMIN } from '../../lib/route';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -80,9 +82,11 @@ export default function Footer() {
                 </a>
               </p>
               <p>
+                <Link to={ADMIN}>
                 <a href='#!' className='text-reset'>
                   Careers
                 </a>
+                </Link>
               </p>
               <p>
                 <a href='#!' className='text-reset'>
