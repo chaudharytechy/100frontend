@@ -6,18 +6,28 @@ import StarCarousel from "../Components/HomePageComponents/Carousel";
 import SpacesAvailable from "../Components/HomePageComponents/Spaces";
 import SearchBar from "../Components/HomePageComponents/SearchBar";
 import styled from "styled-components";
-import Footer from "../Components/Actual_Components/Footer";
-import FinalNavBar from "../Components/HomePageComponents/NavBar";
 import FeaturedSection from "../Components/HomePageComponents/featured";
 import DeveloperSlider from "../Components/HomePageComponents/DeveloperSlider";
-import OurServices from "../Components/Rough_Components/ourServices";
+import OurServices from "../Components/HomePageComponents/ourServices";
+import { useProductContext } from "../Context/productContext";
+import SimilarCarousel from "../Components/HomePageComponents/SimiliarCarousel";
+
 
 function Home() {
+  const {PreLaunchProperties,isPreLaunchLoading,getPreLaunchProducts,PreLuanchFeatProperties,PreLuanchSimilarProperties} = useProductContext();
+   
+  console.log(PreLuanchSimilarProperties)
   return (
     <Wrapper className='section'>
-    <div>
-      <FinalNavBar />
-      <SearchBar />
+      <div
+        style={{
+          height: "80vh",
+          width: "100%",
+          paddingTop: "20rem",
+          boxSizing: "border-box",
+        }}
+        className='djqwUUJNCO'>
+        <SearchBar />
       </div>
       <div
         className='xjUWI'
@@ -38,7 +48,7 @@ function Home() {
         }}>
         Similar Properties You Viewed
       </div>
-      <StarCarousel />
+      <SimilarCarousel />
       <SpacesAvailable />
       <div
         className='xjUWI'
@@ -62,6 +72,15 @@ function Home() {
       </div>
       <StarCarousel />
       <FormHome />
+      <div
+        className='xjUWI'
+        style={{
+          fontSize: "xx-large",
+          margin: "30px 60px 0px 60px",
+          fontWeight: "600",
+        }}>
+        Services We Offer
+      </div>
       <OurServices />
       <WhyChoose />
       <div
@@ -70,7 +89,6 @@ function Home() {
           fontSize: "xx-large",
           margin: "20px 60px 0px 60px",
           fontWeight: "600",
-          
         }}>
         Our Partners
       </div>
@@ -80,13 +98,12 @@ function Home() {
           fontSize: "medium",
           margin: "0px 60px 30px 60px",
           fontWeight: "500",
-          
         }}>
-        
         We are working with Top Builders and Developers across India
       </div>
       <DeveloperSlider />
-      <Footer />
+      <div>
+      </div>
     </Wrapper>
   );
 }
@@ -97,6 +114,12 @@ const Wrapper = styled.section`
     .xjUWI {
       font-size: x-large;
       margin: 30px 30px !important;
+    }
+  }
+  @media screen and (max-width: 1800px) {
+    .djqwUUJNCO {
+      background-image: url("../../Images/Capture1.png");
+      background-repeat: no-repeat;
     }
   }
 `;

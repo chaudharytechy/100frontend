@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Locations from "../../RoughComponent/Locations";
+import Locations from "./Locations";
 
 function SearchBar() {
   let [showText, setShowText] = useState(true);
@@ -43,13 +43,11 @@ function SearchBar() {
     setHandleState();
   }
   
-  
-
   return (
     <Wrapper className='section'>
       <div
         className='qsbWrapper'
-        style={{maxWidth:"950px",margin:"6.5em auto" }}>
+        style={{maxWidth:"950px",marginLeft:"auto",marginRight:"auto"}}>
         <div className='SJDMls'>
           <div className='options active'>Buy</div>
           <div className='options'>Rent</div>
@@ -339,6 +337,9 @@ const Wrapper = styled.section`
   font-family: "DM Sans", sans-serif;
   div {
     box-sizing: border-box;
+  }
+  .dsdwDD{
+    color:white;
   }
   .qsbWrapper {
     display: flex;

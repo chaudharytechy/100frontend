@@ -5,7 +5,7 @@ function Cities() {
   return (
     <Wrapper className="section ">
     <div className='pb-1 pt-1 dffasPL'>
-    <p className='cnjMM text-center font-weight-bold ft-sz-30'>Top Locations In India</p>
+    <p className='cnjMM text-center ft-sz-30' style={{fontWeight:"bold"}}>Top Locations In Gurugram</p>
       <div className="gdmJO d-flex justify-content-between p-3 text-center align-items-center">                                                  
           <div className="cvBMLN">
             <div className="asdDRsfVN bg-one">
@@ -14,17 +14,17 @@ function Cities() {
           </div>
           <div className="cvBMLN">
             <div className="asdDRsfVN bg-two">
-               <p>Sohna Road</p>
+               <p>Golf Course</p>
             </div> 
           </div>
           <div className="cvBMLN">
             <div className="asdDRsfVN bg-three">
-               <p>Sohna Road</p>
+               <p>MG Road</p>
             </div> 
           </div>
           <div className="cvBMLN">
             <div className="asdDRsfVN bg-four">
-               <p>Sohna Road</p>
+               <p>Sikanderpur</p>
             </div> 
           </div>
       </div>
@@ -87,16 +87,20 @@ const Wrapper=styled.section`
     
   }
   .bg-one {
-    background-image: url(http://w3docs.com/uploads/media/default/0001/03/66cf5094908491e69d8187bcf934050a4800b37f.jpeg);
+    background-image: url(../../OtherImages/sohnaRoad.jpg);
+    background-position:center;
   }
   .bg-two {
-    background-image: url(https://w3docs.com/uploads/media/default/0001/03/5bfad15a7fd24d448a48605baf52655a5bbe5a71.jpeg);
+    background-image: url(../../OtherImages/golfCourse.jpg);
   }
   .bg-three {
-    background-image: url(https://th.bing.com/th/id/R.2241d711cdb059bebf739293c80008e2?rik=t8wgewm3xeg0%2fA&riu=http%3a%2f%2fwww.onlyinyourstate.in%2fwp-content%2fuploads%2f2018%2f02%2fPlaces-to-Visit-in-Gurgaon.jpg&ehk=xJg%2feJunoL%2fAK%2bjRTGe34rA08yEvXExNnH29fg1DBLs%3d&risl=&pid=ImgRaw&r=0);
+    background-image: url(../../OtherImages/mgRoad.jpg);
   }
   .bg-four{
-    background-image: url(https://taxibazaar.in/assets/images/routes/gurgaon.jpg);
+    background-image: url(../../OtherImages/sikanderpur.jpg);
+  }
+  .bg-one:hover,.bg-two:hover,.bg-three:hover,.bg-four:hover{
+    filter: grayscale(0.60);
   }
   .cvBMLN:hover .asdDRsfVN,
   .cvBMLN:focus .asdDRsfVN {

@@ -45,7 +45,7 @@ export default function Profile() {
                   alt=''
                 />
               </div>
-              <div className='ml-4'>
+              <div style={{marginLeft:"30px"}}>
                 <p className='pName'>Prosing King</p>
                 <p className='pSub'>
                   <span className='w60-db'>Role</span> : Seller{" "}

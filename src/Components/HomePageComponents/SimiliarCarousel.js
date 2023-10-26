@@ -4,10 +4,10 @@ import styled from "styled-components";
 import StarCard from "./Card";
 import { useProductContext } from "../../Context/productContext";
 
-function StarCarousel() {
-  const{PreLuanchFeatProperties} = useProductContext();
+function SimilarCarousel() {
+  const{PreLuanchSimilarProperties} = useProductContext();
   
-  let Elem =[...PreLuanchFeatProperties];
+  let Elem =[...PreLuanchSimilarProperties];
   
   if (Elem.length === 0) {
     return (
@@ -37,16 +37,16 @@ function StarCarousel() {
     <Wrapper className="section">
     <div className="caroStyle">
       <Carousel swiping={true} show={number} leftArrow={<div className="slMJOW">{"←"}</div>} rightArrow={<div className="slMJOW">{"→"}</div>} slide={1} transition={0.5}>
-         {Elem.map((elem)=>{
-        return <StarCard key={elem.id} {...elem}/>
-       })}
+        {Elem.map((elem)=>{
+            return <StarCard key={elem.id} {...elem}/>
+        })}
       </Carousel>
     </div>
     </Wrapper>
   );
 }
 
-export default StarCarousel;
+export default SimilarCarousel;
 
 const Wrapper=styled.section`
 .caroStyle{

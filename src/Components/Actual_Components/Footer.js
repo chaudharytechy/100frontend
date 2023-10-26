@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
-import Image from "./500x500-1-removebg-preview.png"
+import Image from "./footerImage.png"
 import styled from 'styled-components';
 
 export default function Footer() {
@@ -16,6 +16,7 @@ export default function Footer() {
           <a href='' className='me-4 text-reset'>
             <MDBIcon fab icon="facebook-f" />
           </a>
+
           <a href='' className='me-4 text-reset'>
             <MDBIcon fab icon="twitter" />
           </a>
@@ -35,8 +36,8 @@ export default function Footer() {
         <MDBContainer className='text-center text-md-start mt-5'>
           <MDBRow className='mt-3'>
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4' style={{display:"flex",justifyContent:"center"}}>
-                <img src={Image} width="220px" height="60px" className=""/>
+              <h6 className='text-uppercase fw-bold mb-4' style={{display:"flex",width:"230px",height:"auto"}}>
+                <img src={Image} className="" style={{width:"100%"}}/>
               </h6>
               <p>
               The 100acress simplifies your journey of finding a property in Gurgaon by providing you with relevant information that helps you make an informed decision.

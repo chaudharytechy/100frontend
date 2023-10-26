@@ -1,9 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { BLOG, REGISTER, ROOT } from "../../lib/route";
+import axios from "axios"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Home from "../../Pages/Home";
+
 
 function LoginMain() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const navigate = useNavigate();
   useEffect(() => {
     const signUpButton = document.getElementById("signUp");
@@ -22,57 +30,98 @@ function LoginMain() {
     });
   }, []);
 
-  function multiTO(){
-    navigate(REGISTER);
+  const URLREGISTER="https://one00acress.onrender.com/postPerson/register";
+  const URLLOGIN="https://one00acress.onrender.com/postPerson/verify_Login"
+
+  const[formDataRegister,setFormDataRegister] = useState({
+    name:"",
+    email:"",
+    mobile:"",
+    address:"",
+    password:"",
+    cpassword:"",
+  })
+
+  const[formDataLogin,setFormDataLogin] = useState({
+    email: "",
+    password: "",
+  })
+  function handleLoginChange(e){
+    setFormDataLogin({...formDataLogin,[e.target.name]:e.target.value})
+    console.log()
+  }
+  function handleChange(e){
+    setFormDataRegister({...formDataRegister,[e.target.name]:e.target.value});
+  }
+  function submitRegister(e){
+    e.preventDefault();
+    // axios.post(URL,{formData})
+    // .then(res=>{
+    //   console.log(res)
+    // })
+    // .catch(err=>console.log(err))
+    axios({
+      method:"post",
+      url:URLREGISTER,
+      data:formDataRegister,
+    })
+    .then(res=>{
+      console.log(res.data.message)
+      navigate("/");
+    })
+    .catch(err=>{
+      console.log(err.name);
+      handleShow()
+    })
+  }
+
+  function submitLogin(e){
+    e.preventDefault();
+    axios({
+      method:"post",
+      url:URLLOGIN,
+      data:formDataLogin,
+    })
+    .then(res=>{
+      console.log(res.data.message)
+      
+    })
+    .catch(err=>{
+      console.log(err.name);
+      handleShow()
+    })
   }
 
   return (
     <Wrapper className='section'>
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Body style={{textAlign:"center"}}>Email Already Registered</Modal.Body>
+      </Modal>
       <div className='container' id='container'>
       <Link to={ROOT}>
       <i class="fa fa-close" id="closeBtn" title="Close" style={{zIndex:"999",position:"absolute",right:"10px",top:"5px",fontSize:"24px",color:"white",cursor:"pointer"}}></i>
       </Link> 
       <div className='form-container sign-up-container'>
-          <form action='#'>
-            <h1>Create Account</h1>
-            <div className='social-container'>
-              <a href='#' className='social'>
-                <i className='fab fa-facebook-f'></i>
-              </a>
-              <a href='#' className='social'>
-                <i className='fab fa-google-plus-g'></i>
-              </a>
-              <a href='#' className='social'>
-                <i className='fab fa-linkedin-in'></i>
-              </a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type='text' placeholder='Name' />
-            <input type='email' placeholder='Email' />
-            <input type='number' placeholder='Mobile No' />
-            <input type='password' placeholder='Password' />
-            <button onClick={multiTO}>Sign Up</button>
+          <form onSubmit={submitRegister}>
+            <h1 style={{fontSize:"30px"}}>Create Account</h1>
+            <input type='text' required placeholder='Name' onChange={handleChange} name="name"/>
+            <input type='email' required placeholder='Email' onChange={handleChange} name="email"/>
+            <input type='number' required placeholder='Mobile No' onChange={handleChange} name="mobile"/>
+            <input type='text' required placeholder='Address' onChange={handleChange} name="address"/>
+            <input type='password' required placeholder='Password' onChange={handleChange} name="password"/>
+            <input type='password' required placeholder='Confirm Password' onChange={handleChange} name="cpassword"/>
+            <button type="submit">Sign Up</button>
           </form>
         </div>
         <div className='form-container sign-in-container'>
-          <form action='#'>
+          <form onSubmit={submitLogin}>
             <h1>Sign in</h1>
-            <div className='social-container'>
-              <a href='#' className='social'>
-                <i className='fab fa-facebook-f'></i>
-              </a>
-              <a href='#' className='social'>
-                <i className='fab fa-google-plus-g'></i>
-              </a>
-              <a href='#' className='social'>
-                <i className='fab fa-linkedin-in'></i>
-              </a>
-            </div>
+            
             <span>or use your account</span>
-            <input type='email' placeholder='Email' />
-            <input type='password' placeholder='Password' />
+            <input type='email' placeholder='Email' name="email" onChange={handleLoginChange}/>
+            <input type='password' placeholder='Password' name="password" onChange={handleLoginChange}/>
             <a href='#'>Forgot your password?</a>
-            <button>Sign In</button>
+            <button type="submit">Sign In</button>
           </form>
         </div>
         <div className='overlay-container'>

@@ -2,17 +2,27 @@ import React, { useState } from "react";
 import PropViewCard from "../Components/Actual_Components/PropViewCard";
 import styled from "styled-components";
 import FinalNavBar from "../Components/HomePageComponents/NavBar";
+import {useProductContext} from "../Context/productContext"
+import { InfinitySpin } from  'react-loader-spinner'
 
 function Properties() {
+  const {PreLaunchProperties,isPreLaunchLoading} = useProductContext();
   const [selectedAcc, setSelectedAcc] = useState("propType");
 
   const toggleElement = (tabId) => {
     setSelectedAcc(tabId);
   };
+  let Elem =[...PreLaunchProperties];
+  if(isPreLaunchLoading){
+    return( 
+      <div style={{margin:"30vh 30vw 30vh 43vw"}}>
+        <InfinitySpin width='500' color="red"/>
+      </div>
+      )
+  }
   
   return (
     <Wrapper className='Section'>
-    <FinalNavBar />
       <div className='d-flex flex-wrap' style={{ padding: "0px" }}>
         <div className='li_options w-25 position-relative'>
           <div className='fi_space'>
@@ -333,14 +343,14 @@ function Properties() {
           <div className="li_head_row">
              <div className="heading">
                 <h3 className="title">
-                   {"Properties in "}
+                   {"Projects in "}
                    {"Gurugram"}
                 </h3>
                 <p className="description">
                     {" Showing 1 - "}
-                    {"10"}
+                    {Elem.length}
                     {" of "}
-                    {"36"}
+                    {Elem.length}
                 </p>
              </div>
              <div className="sorting-filter">
@@ -354,15 +364,9 @@ function Properties() {
              </div>
           </div>
           <div className="li_grid_area">
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
-          <PropViewCard />
+          {Elem.map((elem)=>{
+            return <PropViewCard key={elem.id} {...elem}/>
+          })}
           </div>
         </div>
       </div>

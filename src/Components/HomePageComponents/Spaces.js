@@ -7,29 +7,29 @@ function SpacesAvailable() {
     <div style={{boxShadow:"0px 0px 30px 0px #0000001a",borderRadius:"25px"}}>
     <div style={{fontSize:"30px",paddingTop:"20px",fontWeight:"600",textAlign:"center"}}>Choose the Best For you</div>
       <div className="_6sknMP">
-        <div className="_ksjMM _1fe1" title="Coworking spaces">
-          <p className="_9gncbH">Coworking</p>
-          <p className="_4rgjvNN">Spaces</p>
-        </div>
-        <div className="_ksjMM _1fe2" title="List all your properties">
-          <p className="_9gncbH">List</p>
+        <div className="_ksjMM _1fe1" title="Residencial Property">
+          <p className="_9gncbH">Residencial</p>
           <p className="_4rgjvNN">Property</p>
         </div>
-        <div className="_ksjMM _1fe3" title="Office spaces">
-          <p className="_9gncbH">Office</p>
+        <div className="_ksjMM _1fe2" title="Residencial Projects">
+          <p className="_9gncbH">Residencial</p>
+          <p className="_4rgjvNN">Projects</p>
+        </div>
+        <div className="_ksjMM _1fe3" title="Coliving Spaces">
+          <p className="_9gncbH">CoLiving</p>
           <p className="_4rgjvNN">Spaces</p>
         </div>
-        <div className="_ksjMM _1fe4" title="Virtual Offices">
-          <p className="_9gncbH">Virtual</p>
-          <p className="_4rgjvNN">Offices</p>
+        <div className="_ksjMM _1fe4" title="Commercial Property">
+          <p className="_9gncbH">Commercial</p>
+          <p className="_4rgjvNN">Property</p>
         </div>
-        <div className="_ksjMM _1fe5" title="Enterprise Solutions">
-          <p className="_9gncbH">Enterprise</p>
-          <p className="_4rgjvNN">Solutions</p>
+        <div className="_ksjMM _1fe5" title="Commercial Projects">
+          <p className="_9gncbH">Commercial</p>
+          <p className="_4rgjvNN">Projects</p>
         </div>
-        <div className="_ksjMM _1fe6" title="Coliving spaces">
-          <p className="_9gncbH">Coliving</p>
-          <p className="_4rgjvNN">Spaces</p>
+        <div className="_ksjMM _1fe6" title="Sco Plots">
+          <p className="_9gncbH">SCO</p>
+          <p className="_4rgjvNN">Plots</p>
         </div>
       </div>
       </div>
@@ -52,7 +52,33 @@ const Wrapper=styled.section`
   background-position: center;
   margin: 20px;
   cursor: pointer;
-  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("https://www.wework.com/ideas/wp-content/uploads/sites/4/2021/02/Web_150DPI-20191213_WeWork_One-Seaport-Square-Boston_011_v1.jpg");
+}
+._1fe1:hover,._1fe2:hover,._1fe3:hover,._1fe4:hover,._1fe5:hover,._1fe6:hover{
+  background-size:500px 250px;
+}
+._1fe1{
+  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../../OtherImages/residencial.jpeg");
+  background-size:400px 180px;
+}
+._1fe2{
+  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../../OtherImages/residencialProject.jpeg");
+  background-size:400px 180px;
+}
+._1fe3{
+  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../../OtherImages/coliving.jpeg");
+  background-size:400px 180px;
+}
+._1fe4{
+  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../../OtherImages/commercialProperty.jpeg");
+  background-size:400px 200px;
+}
+._1fe5{
+  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../../OtherImages/commecialProject.jpeg");
+  background-size:400px 180px;
+}
+._1fe6{
+  background-image: linear-gradient(to right,rgb(255, 255, 255,0.1),rgb(255, 255, 255,0.1),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url("../../OtherImages/sco.jpeg");
+  background-size:400px 180px;
 }
 ._ksjMM{
   width: 380px;

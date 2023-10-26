@@ -8,10 +8,12 @@ function WhyChoose() {
       <div className="d-flex flex-column align-items-center text-center">
         <img src="../Images/djfML.png" alt="" className='whyChooseImg'/>
         </div>
-      <div className="_shj">
+      <div className="_shj" style={{maxWidth:"1130px",margin:"auto"}}>
         <p className='titLL text-center'>Why Choose 100acress.com?</p>
         <p className='_lndc text-center'>100Acress is helping thousands find their Dream Home, Workspace & Everything in between.</p>
         <p className='_lndc text-center'>As we grow, we think of ourselves as creating a warm and welcoming Ecosystem where ,we all as a family choose the best for you.</p>
+        <p className='_lndc text-center'>The platform often verifies property listings to reduce the risk of fraud and ensure the accuracy of the information provided.</p>
+        <p className='_lndc text-center'>100acress is known for its extensive database of property listings, making it a valuable resource for individuals and businesses looking to buy, sell, or rent real estate properties.</p>
         <p className='_fndR text-center'>Rajesh Aggarwal, Founder</p>
         </div>
     </div>

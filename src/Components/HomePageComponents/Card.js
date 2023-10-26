@@ -1,15 +1,28 @@
 import React from "react";
 import { styled } from "styled-components";
 import { MdLocationPin } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-function StarCard() {
+function StarCard(elem) {
+  if (!elem || !elem.photo || !elem.price || !elem.city || !elem.projectName) {
+
+    return (
+      <Wrapper className="section">
+        <div>Loading...</div>
+      </Wrapper>
+    );
+  }
+  const{photo,price,city,projectName,location,_id} =elem;
+  const Url=`/${projectName}/${_id}`
+  
   return (
     <Wrapper className="section">
+    <Link to={Url}>
     <div className='w9HDn0'>
       <div className='sQoIH w-100 h-auto'>
         <div className='xjNJ w-100'>
           <img
-            src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9hZCUyMHRyaXB8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
+            src={photo[0].url}
             alt=''
             className="w-100 h-100"
           />
@@ -19,17 +32,18 @@ function StarCard() {
             <div className='q2jam'>
               <MdLocationPin size={14} color='#0a9e88' />
             </div>
-            <div style={{ fontWeight: "600", fontSize: "14px" }}>Delhi</div>
+            <div style={{ fontWeight: "600", fontSize: "14px" }}>{location}</div>
           </div>
         </div>
       </div>
       <div className='w238N'>
-        <h2>M3M Urbana</h2>
-        <p style={{margin:"0px"}}>
-          Starting at <span>₹ 1.3 CR/-</span>
+        <h2>{projectName}</h2>
+        <p style={{margin:"0px",marginTop:"14px"}}>
+          Starting at <span>₹ {price} CR/-</span>
         </p>
       </div>
     </div>
+    </Link>
     </Wrapper>
   );
 }

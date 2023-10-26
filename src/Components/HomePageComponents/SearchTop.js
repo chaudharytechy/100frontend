@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 function SearchTop() {
   return (
-    <Wrapper className='section'>
+    <Wrapper className='section'> 
       <div className='SJDMls'>
          <div className='options'>Buy</div>
          <div className='options'>Sell</div>

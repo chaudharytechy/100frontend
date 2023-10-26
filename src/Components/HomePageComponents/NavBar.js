@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "../../Images/cropped-logo-removebg-preview.png";
+import Image from "../../Images/100acress.png";
 import { BsFolder } from "react-icons/bs";
 import styled from "styled-components";
 import { GiFamilyHouse } from "react-icons/gi";
@@ -14,12 +14,16 @@ import { RxCross2 } from "react-icons/rx";
 
 function FinalNavBar() {
   const [showNav, setShowNav] = useState(false);
+  const URL="/projects"
   return (
     <Wrapper className='section'>
       <div className='Mflx'>
-        <div className='1euNB'>
-          <img src={Image} alt='' width='60' />
+      
+        <div className='1euNB' style={{cursor:"pointer"}}>
+        <Link to={ROOT}></Link>
+          <img src="https://www.100acress.com/assets/images/aadhar.png" alt='' width='200' />
         </div>
+        
         <div
           className='barDotMenu'
           style={{ width: "fit-content", marginBottom: "10px" }}>
@@ -65,7 +69,7 @@ function FinalNavBar() {
                     <li>Bungalow for Sale</li>
                     <li>Apartments for Sale</li>
 
-                    <hr style={{ margin: "7px 0px" }} />
+                    <hr style={{ margin: "7px 0px",color:"black" }} />
                     <li>All Residencial for Sale</li>
                   </ul>
                 </li>
@@ -237,7 +241,7 @@ function FinalNavBar() {
           </div>
         )}
         <div className='NBflx'>
-          <ul className='ulfx _1grx'>
+          <ul className='ulfx _1grx' style={{marginTop:"8px"}}>
             <li className='pxrE el1'>
               <span className='pxrETXT'>
                 <a>Buy</a>
@@ -382,7 +386,7 @@ function FinalNavBar() {
             </li>
             <li className='_3px49x'>
               <span className='pxrETXT'>
-                <a>Properties</a>
+                <a>Projects</a>
               </span>
               <ul className='_2emBLM _nEXRT'>
                 <li className='_3emBLMe'>
@@ -391,12 +395,14 @@ function FinalNavBar() {
                       <div className='amidd'>
                         <GiVillage size='40' />
                       </div>
+                      <Link to={URL} relative="path">
                       <div className='exori'>
-                        <p className='_2hduom'>View All Properties</p>
+                        <p className='_2hduom'>View All Projects</p>
                         <span className='_2hskbj'>
-                          Lorem ipsum dolor sit amet
+                          Glimpse of All Listed ones
                         </span>
                       </div>
+                      </Link>
                     </li>
                   </ul>
                 </li>
@@ -431,8 +437,18 @@ function FinalNavBar() {
 
 export default FinalNavBar;
 const Wrapper = styled.section`
+position:sticky;
+top:0px;
+z-index:999;
   .ieuNB {
     display: flex;
+  }
+  
+  ._2hskbj{
+    color:black !important;
+  }
+  ._2hskbj:hover{
+    color:red !important;
   }
   .ulfx {
     list-style: none;
@@ -442,6 +458,7 @@ const Wrapper = styled.section`
     height: 100%;
     margin-bottom: 5px;
     margin-top: 0px;
+    color:white;
   }
   .NBflx {
     display: flex;
@@ -451,7 +468,12 @@ const Wrapper = styled.section`
   .Mflx {
     display: flex;
     align-items: center;
+    background:red;
     padding: 0px 10px;
+    border-radius:0px 0px 10px 10px;
+  }
+  hr{
+    color:black !important;
   }
   ._1grx > li,
   ._2grx > li {
@@ -462,7 +484,7 @@ const Wrapper = styled.section`
     justify-content: flex-end;
     flex-grow: 1;
     padding-right: 20px;
-    margin-top: 2px;
+    margin-top: 8px;
   }
   .linkEl {
     color: inherit;
@@ -564,7 +586,7 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
   ._exJRE {
-    border-right: 1px solid red;
+    border-right: 1px solid white;
   }
   .MBflx{
     display:flex;
@@ -580,6 +602,10 @@ const Wrapper = styled.section`
   }
   ._2hduom {
     margin-bottom: 0px;
+    color:black;
+  }
+  ._2hduom:hover{
+    color:red;
   }
   .amidd {
     padding-top: 5px;
@@ -595,6 +621,7 @@ const Wrapper = styled.section`
     width: 100%;
     height: auto;
   }
+  
   .pxiArt {
     width: 100%;
     position: center;

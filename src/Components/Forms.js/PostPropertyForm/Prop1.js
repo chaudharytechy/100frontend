@@ -353,7 +353,6 @@ max-width:860px;
     color: #e5652e;
     border-color: #e5652e;
     background: rgba(255, 99, 71, 0.2);
-    
   }
   .ng-untoucheded:checked + label {
     color: #e5652e;

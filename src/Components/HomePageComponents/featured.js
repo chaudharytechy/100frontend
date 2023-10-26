@@ -2,57 +2,44 @@
 
 import React from "react";
 import { styled } from "styled-components";
+import { useProductContext } from "../../Context/productContext";
+import { Link } from "react-router-dom";
 
 function FeaturedSection() {
+  const {PreLuanchByBuilder} =useProductContext();
+  
   return (
     <Wrapper className='section'>
       <div style={{ margin: "20px 80px 50px 80px" }}>
         <div className='sshdNBC d-flex justify-content-around align-items-center flex-wrap'>
-          <div className='flex1 mt-3 mb-3'>
+        {PreLuanchByBuilder.map((elem)=>{
+          const URL=`/${elem.projectName}/${elem._id}`
+          return (
+            <div className='flex1 mt-3 mb-3'>
+            <Link to={URL}>
             <div className='dkMMCKpP'>
               <img
-                src='https://images.prismic.io/99-content/21e97878-9ae3-43c0-918a-c0a3e6b1bb10_Continuum+hero+shot.jpg?auto=compress,format&mode=crop&width=544&q=35'
-                alt=''
+                src={elem.photo[0].url}
+                alt='builder Image'
                 className='rounded'
               />
             </div>
             <div className='pad'>
-              <p className='ft-sz-25 _2rhE-'>Godrej Nature Plus</p>
-              <p className='ft-cl-gr'>Gurugram · Sector 34 · D07</p>
+              <p className='ft-sz-25 _2rhE-'>{elem.projectName}</p>
+              <p className='ft-cl-gr'>{elem.city} · {elem.location} </p>
               <div className="_1Hy63 d-flex justify-content-between align-items-center">
               <div style={{width:"fit-content"}}> 
-                <p className='smallText _2rhE- li-ht-22'>Residencial · 2023 · FreeHold</p>
-                <p className='smallText _2rhE- li-ht-22'>74 units · 2, 3, 4, 5 BHK</p>
-              </div>
-              <div style={{height:"44px",width:"70px"}} className="JSJBSm">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Godrej_Logo.svg/2560px-Godrej_Logo.svg.png" alt="" />
+                <p className='smallText _2rhE- li-ht-22'>{elem.builderName} · 2023 · {elem.status}</p>
+                <p className='smallText _2rhE- li-ht-22'>74 units · {elem.configuration}</p>
               </div>
               </div>
             </div>
+            </Link>
           </div>
-          <div className='flex1 mt-1'>
-            <div className='dkMMCKpP'>
-              <img
-                src='https://images.prismic.io/99-content/7c4a2365-7256-4587-9293-a1ef45fbac30_Lentor+hills+Featured+Project+v2.jpg?auto=compress,format&mode=crop&width=544&q=35'
-                alt=''
-                className='rounded'
-              />
-            </div>
-            <div className='pad'>
-              <p className='ft-sz-25 _2rhE-'>M3M Skywalk</p>
-              <p className='ft-cl-gr' style={{fontWeight:"200"}}>Gurugram · Sector 74 · D07</p>
-              <div className="_1Hy63 d-flex justify-content-between">
-              <div style={{width:"fit-content"}}>  
-                <p className='smallText _2rhE- li-ht-22'>Residencial · 2014 · Ready To Move In</p>
-                <p className='smallText _2rhE- li-ht-22'>39 units · 2, 3, 4 Bedroom</p>
-              </div>
-              <div style={{height:"44px",width:"auto"}} className="JSJBSm">
-                <img src="https://www.asite.com/hubfs/resources/images/newsroom/Resized/M3M.jpg" alt="" />
-              </div>
-            </div>
+          )
+        })}
+          
           </div>
-          </div>
-        </div>
       </div>
     </Wrapper>
   );

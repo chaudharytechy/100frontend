@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { AiFillStar } from "react-icons/ai";
 import { BsFillCameraFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-function PropViewCard() {
-  const fullText =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet aliquam sapien, eu dignissim tortor facilisis vel. Fusce auctor tellus in hendrerit. Vivamus ut lectus purus.";
-
+function PropViewCard(elem) {
+  const{photo,minCovered_Area,configuration,aboutProject,projectName,location,featured,price,_id} =elem;
+  
+  const fullText =aboutProject;
   let [showFullText, setShowFullText] = useState(false);
   let [displayText, setDisplayText] = useState(fullText.slice(0, 60));
   let [isBookmarked, setIsBookmarked] = useState(false);
-
+  
+  
   const toggleText = () => {
     setShowFullText(!showFullText);
     setDisplayText(showFullText ? fullText.slice(0, 60) : fullText);
@@ -18,13 +20,14 @@ function PropViewCard() {
   const handleBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
   };
-
+  const PropApi=`/${projectName}/${_id}`
+  projectName.replaceAll("-"," ");
   return (
     <Wrapper className='section'>
       <div className='mainFrame bc-rd-23'>
-        <div className='contentsJm w-100 h-100 bc-rd-23 d-flex'>
+        <div className='contentsJm w-100 bc-rd-23 d-flex'>
           <div className='leftMcn'>
-            <div className='imgeProp bc-rd-23'>
+            <div className='imgeProp bc-rd-23' style={{backgroundImage:`url(${photo[0].url})`,backgroundSize:"cover"}}>
               <div className='imgdev position-relative'>
                 <img src='' alt='' />
               </div>
@@ -42,26 +45,29 @@ function PropViewCard() {
                     <span className='pr-1'>
                       <BsFillCameraFill color='white' />
                     </span>
-                    <span style={{ color: "white" }}>10</span>
+                    <span style={{ color: "white" }}> {photo.length}</span>
                   </span>
                 </div>
               </div>
             </div>
             <div className='textSb ml-3 mt-2'>
               <span className='font-weight-bold ft-sz-15'>Posted By : </span>
-              <span className='ft-sz-14'>Rajesh Goyal</span>
+              <span className='ft-sz-14'>Admin</span>
             </div>
           </div>
           <div className='rightMcn pl-4 w-100 pr-3'>
             <div className='topSkn d-flex justify-content-between'>
               <div className='d-flex'>
-                <span className='mr-3 font-weight-bold ft-sz-15'>
-                  Home for Sale
+              <Link to={PropApi}>
+                <span className='mr-3 font-weight-bold ' style={{marginRight:"10px",color:"black"}}>
+                  {projectName}
                 </span>
+                </Link>
                 <div className='ftred bc-rd-23 d-flex justify-content-center align-items-center'>
-                  <span className='px-3 ft-sz-14 font-weight-bold'>
-                    Featured
-                  </span>
+                 {featured ==="true"? <span className='px-3 ft-sz-14 font-weight-bold'>
+                 Featured
+               </span> : null}
+                  
                 </div>
               </div>
               <div>
@@ -74,25 +80,24 @@ function PropViewCard() {
               </div>
             </div>
 
-            <div className='mt-2'>
+            <div >
               <p className='skdjMdH ft-sz-15 ft-cl-gr'>
-                Golf Course Road, Sector 53, Gurgaon
+                {location}
               </p>
             </div>
-
             <div
               className='cmMidSec d-flex justify-content-between '
               style={{ width: "85%" }}>
               <div className='BhCl d-flex flex-column'>
-                <span className='ft-sz-15 font-weight-bold'>₹ 1.3 CR</span>
+                <span className='ft-sz-15 font-weight-bold'>₹ {price/10} CR</span>
                 <span className='ft-sz-10 ft-cl-gr'>₹ 34,570/sq.ft</span>
               </div>
               <div className='BhCl d-flex flex-column'>
-                <span className='ft-sz-15 font-weight-bold'>2057 Sq.ft</span>
+                <span className='ft-sz-15 font-weight-bold'>{minCovered_Area} Sq.ft</span>
                 <span className='ft-sz-10 ft-cl-gr'>(54.47 sq.m)Plot Area</span>
               </div>
               <div className='BhCl d-flex flex-column'>
-                <span className='ft-sz-15 font-weight-bold'>3 BHK</span>
+                <span className='ft-sz-15 font-weight-bold'>{configuration}</span>
                 <span className='ft-sz-10 ft-cl-gr'>3 Baths</span>
               </div>
             </div>
@@ -217,5 +222,20 @@ const Wrapper = styled.section`
   .sfzzZ {
     background-color: #56a1fa;
     color: white;
+  }
+  .font-weight-bold{
+    font-weight:bold;
+  }
+  .pl-4{
+    padding-left:.7rem !important;
+  }
+  .mr-1{
+    margin-right:.25rem !important;
+  }
+  .mr-2{
+    margin-right:.5rem !important;
+  }
+  .fedhfmk >button{
+    border:none !important;
   }
 `;

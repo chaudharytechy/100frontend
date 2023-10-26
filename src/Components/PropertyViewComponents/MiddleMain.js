@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Image from "../../Images/naomi-hebert-MP0bgaS_d1c-unsplash.jpg";
 import Image2 from "../../Images/M3M-Foundation-Rise-Logo-black.png";
@@ -8,6 +8,8 @@ import { ScrollingCarousel, Carousel } from "@trendyol-js/react-carousel";
 import Avatar from "../../Images/businesswoman-character-avatar-icon-vector-12800166.jpg";
 import ImageLocation from "../../Images/location-map.webp";
 import GuardPNG from "../../Images/guard.png"
+import {useParams} from "react-router-dom"
+import { InfinitySpin } from  'react-loader-spinner'
 
 import {
   MDBValidation,
@@ -17,14 +19,42 @@ import {
   MDBBtn,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { useProductContext } from "../../Context/productContext";
+import CourselBhk from "./CourselBhk";
+
+const API= "https://one00acress.onrender.com/preLaunch/view";
 
 function MiddleMain() {
-  const properties = [1, 2, 3, 4, 5, 6, 7, 8];
+  const {singleProperty,isSingleLoading,getSingleProduct,PreLuanchSimilarProperties,PreLuanchFeatProperties} = useProductContext();
+  const {id} = useParams();
+  
   const [formValue, setFormValue] = useState({
     fname: "",
     emailSet: "",
     pno: "",
   });
+  // /6532189ff327f901afad1f55
+  function handleEmailInput(){
+    window.open('mailto:cs@100acress.com');
+  }
+  useEffect(()=>{
+    getSingleProduct(`${API}/${id}`);
+  },[])
+  
+  console.log(singleProperty)
+  const {city,aboutProject,configuration,location,maxCovered_Area,minCovered_Area,price,projectName,rera_No,status,photo,amentites,floorPlan,sitePlan,locationMap,BHK_details} = singleProperty;
+  
+  if(isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap){
+    return( 
+      <div style={{margin:"30vh 30vw 30vh 43vw"}}>
+        <InfinitySpin width='500' color="red"/>
+      </div>
+      )
+  }
+  const properties = [1, 2, 3, 4, 5, 6, 7, 8];
+  const amenitiesFinal=amentites[0].split(",");
+  console.log(BHK_details)
+  
   const onChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
@@ -38,12 +68,10 @@ function MiddleMain() {
 
   const handleDownload = (e) => {
     let downloadPdf = document.querySelector("downloadMainFile");
-    console.log(this);
     var timeLeft = 2;
 
     var downloadTimer = setInterval(function timeCount() {
       timeLeft -= 1;
-      console.log(timeLeft);
 
       if (timeLeft <= 0) {
         clearInterval(downloadTimer);
@@ -71,7 +99,7 @@ function MiddleMain() {
     <Wrapper className='section'>
       <div className='dkmseujM d-flex'>
         <div className='SideMenu position-relative'>
-          <ul className='sideBar'>
+          <ul className='sideNavBarSe'>
             <li className='lIst_Hover'>
               <a href='#overview'>Overview</a>
             </li>
@@ -101,53 +129,48 @@ function MiddleMain() {
           <div className='topEst lmN'>
             <div style={{ display: "flex" }}>
               <div className='cmP'>
-                <img src={Image2} alt='Builder  Image' className='sjMM' />
+                <img src={Image2} alt='Builder  Image' className='sjMM' style={{width:"100%"}} />
               </div>
               <div className='cnMO'>
                 <h1
                   className='titleMB'
                   >
-                  M3M Urbana
+                  {projectName}
                 </h1>
-                <span>Sector-79, Gurgaon</span>
+                <span>{location}</span>
               </div>
             </div>
-            <div className='ndMO'>Call for Price</div>
+            <div className='ndMO'>₹ {price/10}</div>
+          </div>
+          <div>
+          <img src={photo[0].url} alt="" style={{width:"100%",borderRadius:"15px",height:"500px"}}/>
           </div>
           <div className='fdLopKl'>
             <div className='grid bxRP'>
-              <img src={Image} alt='' srcset='' className='siiMP bor-red-20' />
+              
             </div>
-            <div className='grid Hnk'>
-              <img src={Image} alt='' srcset='' className='siiMP bor-red-20' />
-            </div>
-            <div className='grid udaP'>
-              <img src={Image} alt='' srcset='' className='siiMP bor-red-20' />
-            </div>
-            <div className='grid vbU'>
-              <img src={Image} alt='' srcset='' className='siiMP bor-red-20' />
-            </div>
+            
           </div>
           <div className='gridBtm'>
             <div className='mlsM'>
               <span>Location</span>
-              <p className='NNO'>Sector-79, Gurgaon</p>
+              <p className='NNO'>{location}</p>
             </div>
             <div className='mlsM'>
               <span>Configuration</span>
-              <p className='NNO'>3 BHK and 4 BHK</p>
+              <p className='NNO'>{configuration}</p>
             </div>
             <div className='mlsM'>
               <span>Status</span>
-              <p className='NNO'>Ready to Move in</p>
+              <p className='NNO'>{status}</p>
             </div>
             <div className='mlsM'>
               <span>Rera No</span>
-              <p className='NNO'>HRERA</p>
+              <p className='NNO'>{rera_No}</p>
             </div>
             <div className='mlsM'>
               <span>Covered Area</span>
-              <p className='NNO'>1024 Sq.ft. - 3093 Sq.Ft.</p>
+              <p className='NNO'>{minCovered_Area} Sq.ft. - {maxCovered_Area} Sq.Ft.</p>
             </div>
           </div>
           <div className='cnMKidNM'>
@@ -156,18 +179,7 @@ function MiddleMain() {
                 <div className='TopElM ldM'>
                   <p>About Project</p>
                   <span className='discR'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Maxime odit unde perferendis sunt quas quasi tenetur est
-                    amet consectetur aut. Adipisci blanditiis consequatur ex,
-                    facere dolorem cum aliquid doloribus quaerat! Repellat qui
-                    maxime neque aut blanditiis, voluptates quod voluptas sed ea
-                    earum quo laudantium dicta. Modi nulla autem quibusdam quam
-                    aliquam assumenda pariatur architecto eum nobis culpa
-                    eveniet, laudantium sequi! Quos facere sint eligendi nemo
-                    quasi eaque commodi dicta ex voluptatum, eum vel unde earum
-                    dolorum distinctio maxime cupiditate laborum nihil, optio
-                    vitae corporis suscipit rerum. Deleniti commodi excepturi
-                    eligendi?0
+                    {aboutProject}
                   </span>
                 </div>
               </div>
@@ -186,55 +198,19 @@ function MiddleMain() {
                   </div>
                   <div className='d-flex'>
                     <Carousel show={1} slide={1} swiping={true} dynamic={true} rightArrow={<div className="cmNIdpO">{">"}</div>} leftArrow={<div className="cmNIdpO">{"<"}</div>}>
-                      <img
-                        src={Image3}
-                        alt='Developer Image'
-                        srcset=''
-                        className='flrImg mnJJ'
-                        width="100%"
-                        id={1}
-                      />
-                      <img
-                        src={Image3}
-                        alt='Developer Image'
-                        srcset=''
-                        className='flrImg mnJJ'
-                        id={2}
-                      />
-                      <img
-                        src={Image3}
-                        alt='Developer Image'
-                        srcset=''
-                        className='flrImg mnJJ'
-                        id={3}
-                      />
-                      <img
-                        src={Image3}
-                        alt='Developer Image'
-                        srcset=''
-                        className='flrImg mnJJ'
-                        id={4}
-                      />
+                      {BHK_details.map((elem)=>{
+                        return (
+                          <CourselBhk key={elem._id} {...elem}/>
+                          
+                          )
+                      })}
                     </Carousel>
                   </div>
-                  <div className='gridBtm  Posum'>
-                    <div className='mlsM'>
-                      <span>Built-Up area</span>
-                      <p className='NNO'>2152 Sq. Ft.</p>
-                    </div>
-                    <div className='mlsM'>
-                      <span>Possession</span>
-                      <p className='NNO'>Under Construction</p>
-                    </div>
-                    <div className='mlsM'>
-                      <span>Type</span>
-                      <p className='NNO'>2 BHK</p>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
 
-              <div id='specification'>
+              {/*<div id='specification'>
                 <div className='TopElM ldM'>
                   <p>Specifications</p>
                   <table className='w-100 '>
@@ -283,13 +259,13 @@ function MiddleMain() {
                     </tr>
                   </table>
                 </div>
-              </div>
+              </div>*/}
 
               <div id='amenities'>
                 <div className='TopElM ldM'>
                   <p>Amenities</p>
                   <span className='discR'>
-                    SS The Coralwood Gurgaon presents an exclusive opportunity
+                    {projectName} {city} presents an exclusive opportunity
                     to own a stunning home that offers all kinds of amenities
                     and facilities. This includes a swimming pool, school, and
                     easy access to solar lighting.
@@ -297,28 +273,30 @@ function MiddleMain() {
                   <div
                     className='d-flex dgdmPmc'
                     style={{ flexWrap: "wrap", marginTop: "20px" }}>
-                    {properties.map((item) => {
+                    {amenitiesFinal.map((item) => {
+                      var Elem=item.toUpperCase()
+                      
                       return (
                         <div
                           style={{
-                            maxWidth: "126px",
+                            maxWidth: "186px",
                             justifyContent: "center",
                             flexDirection: "column",
                             alignItems: "center",
-                            margin: "10px 15px",
-                            border: "2px solid grey",
-                            padding: "20px 0px 10px",
+                            margin: "5px 7px",
+                            border: "1px solid grey",
+                            
                           }}
                           className='d-flex bor-red-20 bo-shdw dgGGH'>
                           <span className='amenIcon w-50 dis-blc'>
                             <span className='w-100 h-auto'>
-                              <img src={GuardPNG} alt='' />
+                              
                             </span>
                           </span>
                           <span
                             className='amenText'
-                            style={{ color: "initial" }}>
-                            Club House
+                            style={{ color: "initial",fontSize:"15px" }}>
+                            {Elem}
                           </span>
                         </div>
                       );
@@ -331,8 +309,8 @@ function MiddleMain() {
                 <div className='TopElM ldM'>
                   <p style={{ marginBottom: "17px" }}>Similar Properties</p>
                   <ScrollingCarousel swiping={true} >
-                    {properties.map((items) => {
-                      return <Carddev />;
+                    {PreLuanchSimilarProperties.map((elem) => {
+                      return <Carddev key={elem.id} {...elem}/>;
                     })}
                   </ScrollingCarousel>
                   <div style={{ marginTop: "20px" }} className='MMcnCSS'>
@@ -366,8 +344,8 @@ function MiddleMain() {
                 <div className='TopElM ldM'>
                   <p style={{ marginBottom: "17px" }}>People who viewed this also viewed</p>
                   <ScrollingCarousel swiping={true}>
-                    {properties.map((items) => {
-                      return <Carddev />;
+                    {PreLuanchFeatProperties.map((elem) => {
+                      return <Carddev key={elem.id} {...elem}/>;
                     })}
                   </ScrollingCarousel>
                   <div style={{ marginTop: "20px" }} className='MMcnCSS'>
@@ -406,8 +384,26 @@ function MiddleMain() {
                   </div>
                   <div className='d-flex'>
                     <img
-                      src={ImageLocation}
+                      src={locationMap.url}
                       alt='Developer Image'
+                      srcset=''
+                      className='flrImg mnJJ bor-red-20 '
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div id='location-map'>
+                <div className='TopElM ldM'>
+                  <div className='topEst'>
+                    <div>
+                      <p>Site Plan</p>
+                    </div>
+                  </div>
+                  <div className='d-flex'>
+                    <img
+                      src={sitePlan.url}
+                      alt='Site Plan'
                       srcset=''
                       className='flrImg mnJJ bor-red-20 '
                     />
@@ -507,10 +503,11 @@ function MiddleMain() {
                     </MDBValidationItem>
 
                     <div className='col-12'>
-                      <MDBBtn type='submit'>Submit</MDBBtn>
+                      <MDBBtn type='submit' color="danger">Submit</MDBBtn>
                       <MDBBtn
+                      outline
                         type='reset'
-                        color='secondary'
+                        color='danger'
                         className='ml-2'
                         onClick={handleResetClick}>
                         Reset
@@ -525,8 +522,8 @@ function MiddleMain() {
                 </div>
                 <div style={{ marginLeft: "20px" }}>
                   <span>Get In Touch</span>
-                  <p style={{ marginBottom: "0px", fontSize: "medium" }}>
-                    info@100acress.com
+                  <p style={{ marginBottom: "0px", fontSize: "medium", cursor:"pointer" }} onClick={handleEmailInput}>
+                    cs@100acress.com
                   </p>
                 </div>
               </div>
@@ -557,7 +554,7 @@ function MiddleMain() {
                       <div class='upload__button__text'>Download</div>
                     </button>
                   </a>
-                  <div class='upload__hint'>Downloading...</div>
+                  <div class='upload__hint'>Opening Form</div>
                   <div class='upload__progress'>
                     <svg
                       width='16'
@@ -568,7 +565,7 @@ function MiddleMain() {
                       viewBox='0 0 13 11'>
                       <polyline points='1 5.5 5 9.5 12 1.5'></polyline>
                     </svg>
-                    Completed
+                    Opened
                   </div>
                 </div>
               </div>
@@ -678,7 +675,7 @@ const Wrapper = styled.section`
   font-family: "DM Sans", sans-serif;
   .dkmseujM {
     margin-right: 10vw;
-    margin-top: 10vh;
+    margin-top: 5vh;
   }
   .cnMO>.titleMB{
     font-size:x-large;
@@ -689,7 +686,7 @@ const Wrapper = styled.section`
     min-width:200px;
     max-width:254px;
   }
-  .sideBar {
+  .sideNavBarSe {
     position: sticky;
     top: 5%;
   }
@@ -732,23 +729,26 @@ const Wrapper = styled.section`
     list-style-type: none;
     color: grey;
   }
-  .sideBar > .lIst_Hover {
+  .lIst_Hover >a{
+    color:grey !important;
+  }
+  .lIst_Hover >a:hover{
+    color:red !important;
+    cursor: pointer;
+  }
+  .sideNavBarSe > .lIst_Hover {
     padding: 0.6rem;
   }
-  .sideBar > .lIst_Hover:hover {
+  .sideNavBarSe > .lIst_Hover:hover{
     cursor: pointer;
-    color: red;
-  }
-  .lIst_Hover > a:hover {
-    cursor: pointer;
-    color: red;
+    color: red !important;
   }
   .topEst {
     display: flex;
     justify-content: space-between;
   }
   .lmN {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   .cmP {
     width: 100px;
@@ -863,15 +863,11 @@ const Wrapper = styled.section`
   }
   .btnApart {
     padding: 1px 10px;
-    border: 2px solid grey;
+    border: 1px solid grey;
     margin: 3px;
     color: grey;
   }
-  .btnApart:hover {
-    color: white;
-    background-color: red;
-    border: 2px solid red;
-  }
+  
   .Posum {
     width: 60%;
   }
@@ -975,6 +971,9 @@ const Wrapper = styled.section`
     overflow: hidden;
     transform: rotate(0);
   }
+  .ml-2{
+    margin-left:.5rem;
+  }
   .upload__info {
     display: flex;
     align-items: center;
@@ -1009,9 +1008,10 @@ const Wrapper = styled.section`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--btn-color);
+    background-color: #dc4c64;
     border-radius: inherit;
     transform-origin: right;
+    box-shadow:0 4px 9px -4px #dc4c64;
   }
   .upload__hint {
     position: absolute;
@@ -1154,10 +1154,10 @@ const Wrapper = styled.section`
       margin-right:1vw;
       margin-left:1vw;
     }
-    .sideBar{
+    .sideNavBarSe{
       display:flex;
     }
-    .sideBar>li{
+    .sideNavBarSe>li{
       width:fit-width;
     }
     .ldM{
@@ -1168,6 +1168,7 @@ const Wrapper = styled.section`
       max-width:none;
       overflow:auto;
     }
+    
     .cnMO{
       margin-left:20px;
       padding-left:18px;
@@ -1192,7 +1193,7 @@ const Wrapper = styled.section`
     .dgdmPmc{
       justify-content:space-around;
     }
-    .sideBar>ul{
+    .sideNavBarSe>ul{
       padding-left:0px !important;
     }
     .SquareAmen {
@@ -1204,7 +1205,7 @@ const Wrapper = styled.section`
       max-width:120px !important;
       margin:10px 12px !important;
     }
-    .sideBar>ul{
+    .sideNavBarSe>ul{
       padding-left:0rem !important;
     }
   }

@@ -6,9 +6,9 @@ import styled from "styled-components";
 function OurServices() {
   return (
     <Wrapper className="section">
-      <div className='container mt-5 mb-5'>
+      <div className='container mt-1 mb-5'>
         <div className='row'>
-          <div className='col-md-4'>
+          <div className='col-md-3'>
             <div className='col max-mb-30 aos-init aos-animate' data-aos='fade-up'>
               {" "}
               <a
@@ -19,23 +19,22 @@ function OurServices() {
                 data-abc='true'>
                 <div className='icon'>
                   {" "}
-                  <img src='https://i.imgur.com/CBU1h2t.png' width='240' />{" "}
+                  <img src='../../otherImages/consulting.jpg' width='240' height="220"/>{" "}
                 </div>
                 <div className='content'>
                   <h3 className='title fz-20'>
-                    Ecommerce solutions for your preferences
+                    Real Estate Consulting
                   </h3>
                   <div className='desc'>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut.
+                      We Provide the best services to help you get your dream home as per your expectation.
                     </p>
                   </div>{" "}
                 </div>
               </a>{" "}
             </div>
           </div>
-          <div className='col-md-4'>
+          <div className='col-md-3'>
             <div className='col max-mb-30 aos-init aos-animate' data-aos='fade-up'>
               {" "}
               <a
@@ -47,19 +46,19 @@ function OurServices() {
                 <div className='icon'>
                   {" "}
                   <img
-                    src='https://i.imgur.com/Ckggrwe.png'
+                    src='../../otherImages/lawyer.jpg'
                     width='220'
+                    height="220"
                     alt=''
                   />{" "}
                 </div>
                 <div className='content'>
                   <h3 className='title fz-20'>
-                    On-Site Content SEO with account management
+                    Legal Advice
                   </h3>
                   <div className='desc'>
                     <p>
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur.
+                    The major issue is trustworthy legal assistance. We will help you through all the aspect. 
                     </p>
                   </div>{" "}
                   
@@ -67,8 +66,10 @@ function OurServices() {
               </a>{" "}
             </div>
           </div>
+
           
-          <div className='col-md-4'>
+          
+          <div className='col-md-3'>
             <div className='col max-mb-30 aos-init aos-animate' data-aos='fade-up'>
               {" "}
               <a
@@ -80,19 +81,52 @@ function OurServices() {
                 <div className='icon'>
                   {" "}
                   <img
-                    src='https://i.imgur.com/IUlCVE2.png'
+                    src='../../otherImages/salesService.jpg'
                     width='220'
+                    height="220"
                     alt=''
                   />{" "}
                 </div>
                 <div className='content'>
                   <h3 className='title fz-20'>
-                    Ecommerce marketing with facebook ads
+                  Sales Services
                   </h3>
                   <div className='desc'>
                     <p>
-                      Excepteur sint occaecat cupidatat non proident, sunt in
-                      culpa qui officia deserunt mollit.
+                    We continuous work to provide your dream home with the best Sales Representatives.
+                    </p>
+                  </div>{" "}
+                  
+                </div>
+              </a>{" "}
+            </div>
+          </div>
+          <div className='col-md-3'>
+            <div className='col max-mb-30 aos-init aos-animate' data-aos='fade-up'>
+              {" "}
+              <a
+                href='#'
+                className='icon-box text-center'
+                data-bg-color='#fff'
+                style={{backgroundColor: "rgb(255, 255, 255)"}}
+                data-abc='true'>
+                <div className='icon'>
+                  {" "}
+                  <img
+                    src='../../otherImages/homeloan.jpg'
+                    width='220'
+                    height="220"
+                    alt=''
+                  />{" "}
+                </div>
+                <div className='content'>
+                  <h3 className='title fz-20'>
+                  Home Loans
+                  </h3>
+                  <div className='desc'>
+                    <p>
+                    We will help you to provide best home loan to complete your dream and guide you at each
+steps.
                     </p>
                   </div>{" "}
                   

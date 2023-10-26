@@ -1,20 +1,35 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import Image from "../../Images/etpb4z-kjnhxk-3t59vo.jpg"
+import { Link } from 'react-router-dom';
 
-function Carddev() {
+function Carddev(elem) {
+  
+  const {photo,projectName,configuration,location,_id}=elem
+  if (!elem || !elem.photo || !elem.projectName) {
+
+    return (
+      <Wrapper className="section">
+        <div>Loading...</div>
+      </Wrapper>
+    );
+  }
+  const URLINK=`/${projectName}/${_id}`
+  projectName.replaceAll("-"," ");
   return (
     <Wrapper className="section">
+    <Link to={URLINK} target='blank'>
     <div className='FkKMMM'>
       <div className="imGd">
-      <img src={Image} alt="Building Image" className='bHN'/>
+      <img src={photo[0].url} alt="Building Image" className='bHN'/>
       </div>
       <div className="ffmj">
-        <h3>Tarc Project</h3>
-        <p className='dfg dhbM'>2, 4, 6 BHK</p>
-        <span className='dfg djnNN'>Golf Course sector 32, Gurgaon</span>
+        <h3 style={{color:"#3b3939"}}>{projectName}</h3>
+        <p className='dfg dhbM' style={{color:"grey"}}>{configuration}</p>
+        <span className='dfg djnNN'>{location}</span>
       </div>
       </div>
+      </Link>
     </Wrapper>
   )
 }
@@ -27,8 +42,8 @@ const Wrapper=styled.section`
   cursor:pointer;
 }
 .imGd{
-    width:214px;
-    height:241px;
+    width:234px;
+    height:215px;
 }
 .ffmj>h3{
   font-size:18px;

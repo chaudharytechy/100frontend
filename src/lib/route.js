@@ -12,6 +12,8 @@ import PropertyKnow from "../Components/KnowAbouts/PropertyKnow";
 import ProfilePage from "../Components/ProfilePage";
 import PageNotFound from "../Pages/PageNotFound";
 import BlogMain from "../Components/Blog_Components/BlogMain";
+import AdminMain from "../Components/AdminPanelComponents/AdminMain";
+import MiddleMain from "../Components/PropertyViewComponents/MiddleMain";
 
 export const ROOT ="/";
 export const LOGIN ="/login";
@@ -22,6 +24,7 @@ export const PROPERTIES="/properties";
 export const PROPERTYVIEW="/:name";
 export const BLOG="/blog";
 export const FORM="/form";
+export const ADMIN="/admin";
 export const ROUGH="/rough";
 export const BLOGVIEW="/blog/:name"
 export const KNOWABOUT="/knowabouts"
@@ -35,11 +38,12 @@ export const router = createBrowserRouter([
     { path: REGISTER, element:<SignUpForm />},
     { path: PAGE_NOT_FOUND, element:<PageNotFound />},
     { path: ABOUT, element:<AboutPage />},
-    { path: PROPERTYVIEW, element:<PropertyView />},
+    { path: PROPERTYVIEW, element:<MiddleMain />},
     { path: PROPERTIES, element:<Properties />},
     { path: BLOG, element:<BlogMain />},
     { path: BLOGVIEW, element:<SingleBlog />},
     { path: FORM, element:<VerificationForm />},
+    { path: ADMIN, element:<AdminMain />},
     { path: KNOWABOUT, element:<PropertyKnow />},
     { path: ROUGH, element:<ProfilePage />},
     { 

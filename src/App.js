@@ -2,11 +2,47 @@ import './App.css';
 import { RouterProvider } from "react-router-dom"
 import { router } from './lib/route';
 import { styled } from 'styled-components';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import LoginMain from './Components/Actual_Components/LoginMain';
+import AboutPage from './Components/AboutPageComponents/AboutPage';
+import Properties from './Pages/Properties';
+import MiddleMain from './Components/PropertyViewComponents/MiddleMain';
+import BlogMain from './Components/Blog_Components/BlogMain';
+import VerificationForm from './Components/Forms.js/SignUpForm/VerificationForm';
+import AdminMain from './Components/AdminPanelComponents/AdminMain';
+import ProfilePage from './Components/ProfilePage';
+import SingleBlog from './Components/Blog_Components/SingleBlog';
+import PropertyKnow from './Components/KnowAbouts/PropertyKnow';
+import Profile from './Components/ProfileSec_Components/Profile';
+import FinalNavBar from './Components/HomePageComponents/NavBar';
+import Footer from './Components/Actual_Components/Footer';
+import PageNotFound from './Pages/PageNotFound';
+import ViewProperty from './Components/AdminPanelComponents/ViewProperty';
 
 function App() {
   return (
     <Wrapper className="section">
-      <RouterProvider router={router} />
+      <Router>
+      <FinalNavBar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<LoginMain />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/projects' element={<Properties />} />
+          <Route path='/:name/:id' element={<MiddleMain />} />
+          <Route path='/blog' element={<BlogMain />} />
+          <Route path='/form' element={<VerificationForm />} />
+          <Route path='/protected/private/admin' element={<AdminMain />} />
+          <Route path='/protected/private/admin/:id' element={<ViewProperty />} />
+          <Route path='/rough' element={<ProfilePage />} />
+          <Route path='/blog/:name' element={<SingleBlog />} />
+          <Route path='/knowabouts' element={<PropertyKnow />} />
+          <Route path='/profile/:id' element={<Profile />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
     </Wrapper>
     );
 }
