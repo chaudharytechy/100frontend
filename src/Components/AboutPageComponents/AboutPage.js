@@ -7,6 +7,7 @@ function AboutPage() {
     <div className="topSection">
     <div class="about-section">
     <div class="container">
+      
         <div class="row clearfix">
             
             <div class="content-column col-md-6 col-sm-12 col-xs-12">
