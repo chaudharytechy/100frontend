@@ -4,8 +4,8 @@ import reducer from "../reducer/propertyReducer";
 
 const AppContext = createContext();
 
-const API = "https://one00acress.onrender.com/newlaunch/viewAll";
-const APIPRE ="https://one00acress.onrender.com/preLaunch/viewAll";
+const API = "https://www.100acress.com/newlaunch/viewAll";
+const APIPRE ="https://www.100acress.com/preLaunch/viewAll";
 
 const initialState ={
     isLoading: false,

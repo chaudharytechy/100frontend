@@ -9,7 +9,7 @@ function ViewProperty() {
     const {singleProperty,isSingleLoading,getSingleProduct} = useProductContext();
     const {id}=useParams();
 
-    const API= "https://one00acress.onrender.com/preLaunch/view";
+    const API= "https://www.100acress.com/preLaunch/view";
 
     useEffect(()=>{
         getSingleProduct(`${API}/${id}`);

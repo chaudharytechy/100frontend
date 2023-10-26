@@ -47,14 +47,14 @@ function PropertyCard(elem) {
       }
     
       const{projectName,_id,photo} =elem;
-      const URL=`https://one00acress.onrender.com/preLaunch/bhk/insert/${_id}`
+      const URL=`https://www.100acress.com/preLaunch/bhk/insert/${_id}`
       
       const Path=`/protected/private/admin/${_id}`
       function handleDeleteSection(){
         
         axios({
             method:"delete",
-            url:`https://one00acress.onrender.com/preLaunch/delete/${_id}`,
+            url:`https://www.100acress.com/preLaunch/delete/${_id}`,
           })
           handleClose();
           handleShowSuccess();
