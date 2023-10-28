@@ -10,7 +10,7 @@ function FeaturedSection() {
   
   return (
     <Wrapper className='section'>
-      <div className="Hayein" style={{ margin: "20px 80px 50px 80px" }}>
+      <div className="Hayein">
         <div className='sshdNBC d-flex justify-content-around align-items-center flex-wrap'>
         {PreLuanchByBuilder.map((elem)=>{
           const URL=`/${elem.projectName}/${elem._id}`
