@@ -19,7 +19,7 @@ function OurServices() {
                 data-abc='true'>
                 <div className='icon'>
                   {" "}
-                  <img src='../../otherImages/consulting.jpg' width='240' height="220"/>{" "}
+                  <img src='../../Images/consulting.jpg' width='240' height="220"/>{" "}
                 </div>
                 <div className='content'>
                   <h3 className='title fz-20'>
@@ -46,7 +46,7 @@ function OurServices() {
                 <div className='icon'>
                   {" "}
                   <img
-                    src='../../otherImages/lawyer.jpg'
+                    src='../../Images/lawyer.jpg'
                     width='220'
                     height="220"
                     alt=''
@@ -81,7 +81,7 @@ function OurServices() {
                 <div className='icon'>
                   {" "}
                   <img
-                    src='../../otherImages/salesService.jpg'
+                    src='../../Images/salesService.jpg'
                     width='220'
                     height="220"
                     alt=''
@@ -113,7 +113,7 @@ function OurServices() {
                 <div className='icon'>
                   {" "}
                   <img
-                    src='../../otherImages/homeloan.jpg'
+                    src='../../Images/homeloan.jpg'
                     width='220'
                     height="220"
                     alt=''

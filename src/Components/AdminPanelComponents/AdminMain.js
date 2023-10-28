@@ -5,15 +5,24 @@ import axios from "axios"
 import Modal from 'react-bootstrap/Modal';
 import { useProductContext } from "../../Context/productContext";
 import PropertyCard from "./PropertyCard";
+import Table from 'react-bootstrap/Table';
+import { useEnquiryContext } from "../../Context/enquiryContext";
 
 function AdminMain() {
   const {PreLaunchProperties,isPreLaunchLoading} = useProductContext();
+  const {FrontPageEnquiries,isfrontEnquiriesLoading} = useEnquiryContext();
+
+  console.log(FrontPageEnquiries);
 
   const[loggedIn,setLoggedIn] = useState(true);
   const [show, setShow] = useState(false);
   const[message,setMessage] = useState();
   const [selectedTab, setSelectedTab] = useState("infoelm");
   const [showForm, setShowForm] = useState(false);
+  const[submited,setSubmitted] = useState(false);
+
+  const closeSubmit=()=>{setSubmitted(false)}
+  const openSubmit=()=>{setSubmitted(true)}
   
   const Elem = [...PreLaunchProperties];
   
@@ -89,6 +98,8 @@ function AdminMain() {
     sitePlan:null,
     floorPlan:null,
     locationMap:null,
+    url:"",
+    Aboutdeveloper:"",
   })
   function handleMainForm(e){
       setFormData({...formData,[e.target.name]:e.target.value})
@@ -131,6 +142,7 @@ function AdminMain() {
 
   function submitPostPropertyForm(e){
     e.preventDefault();
+    openSubmit();
     const formDataToSend = new FormData();
     for (const key in formData) {
       formDataToSend.append(key, formData[key]);
@@ -143,6 +155,7 @@ function AdminMain() {
     .then(res=>{
       console.log(res.data.message);
       setMessage(res.data.message);
+      closeSubmit();
       handleShow();
     })
     .catch(err=>{
@@ -170,7 +183,7 @@ function AdminMain() {
       HandleLog();
     })
   }
-  if(isPreLaunchLoading){
+  if(isPreLaunchLoading || isfrontEnquiriesLoading){
     return <div>...Loading</div>
   }
   return (
@@ -245,6 +258,13 @@ function AdminMain() {
                   Blog
                 </div>
                 <div
+                  onClick={() => toggleElement("EnquiriesSection")}
+                  className={`listElm ${
+                    selectedTab === "EnquiriesSection" ? "active" : ""
+                  }`}>
+                  Enquiry Section
+                </div>
+                <div
                   className={`listElm ${
                     selectedTab === "logOut" ? "active" : ""
                   }`} onClick={HandleLog}>
@@ -276,7 +296,7 @@ function AdminMain() {
                 {showForm && (
                   <div
                     style={{
-                      zIndex: "999",
+                      zIndex: "1",
                       width: "100%",
                       position: "absolute",
                       top: "30px",
@@ -308,10 +328,12 @@ function AdminMain() {
                       </div>
                       <div className="formS">
                         <form onSubmit={submitPostPropertyForm}>
-                         <input type="text" placeholder="Project Name" name="projectName" onChange={handleMainForm}/>
-                         <input type="text" placeholder="location" name="location" onChange={handleMainForm}/>
-                         <input type="text" placeholder="Configuration (ex. 2bhk - 3bhk)" name="configuration" onChange={handleMainForm}/>
-                         <input type="number" placeholder="Price" min={0} name="price" onChange={handleMainForm}/>
+                         <input type="text" placeholder="Project Name" name="projectName" required onChange={handleMainForm}/>
+                         <input type="text" placeholder="location" name="location" required onChange={handleMainForm}/>
+                         <input type="text" placeholder="Configuration (ex. 2bhk - 3bhk)" required name="configuration" onChange={handleMainForm}/>
+                         <input type="text" placeholder="Price (Cr)" min={0} name="price" required onChange={handleMainForm}/>
+                         <input type="text" placeholder="Url link (for address bar) (Eg: xyz-xyz-xyz)" name="url" required onChange={handleMainForm}/>
+
                          <div className="form_section">
                             <div>Status</div>
                             <div className="d-flex">
@@ -329,20 +351,24 @@ function AdminMain() {
                             <div>Featured</div>
                             <div className="d-flex">
                             <input type="radio" id="true" value="true" className="form_prop" name="featured" onChange={handleMainForm}/>
-                            <label htmlFor="true" className="djwOPM">Yes</label>
+                            <label htmlFor="true" className="djwOPM">Trending Project</label>
                             <input type="radio" id="false" value="false" className="form_prop" name="featured" onChange={handleMainForm}/>
-                            <label htmlFor="false" className="djwOPM">No</label>
+                            <label htmlFor="false" className="djwOPM">Similar Project</label>
+                            <input type="radio" id="featured" value="featured" className="form_prop" name="featured" onChange={handleMainForm}/>
+                            <label htmlFor="featured" className="djwOPM">Featured</label>
+                            <input type="radio" id="asUsual" value="asUsual" className="form_prop" name="featured" onChange={handleMainForm}/>
+                            <label htmlFor="asUsual" className="djwOPM">As Usual</label>
                             </div>
                          </div>
-                         <input type="text" placeholder="Rera no" name="rera_No" onChange={handleMainForm}/>
-                         <input type="number" placeholder="minCovered Area (sq.ft.)" min={0} name="minCovered_Area" onChange={handleMainForm}/>
-                         <input type="number" placeholder="maxCovered Area (sq.ft.)" min={0} name="maxCovered_Area" onChange={handleMainForm}/>
+                         <input type="text" placeholder="Rera no" name="rera_No" required onChange={handleMainForm}/>
+                         <input type="number" placeholder="minCovered Area (sq.ft.)" min={0} name="minCovered_Area" required onChange={handleMainForm}/>
+                         <input type="number" placeholder="maxCovered Area (sq.ft.)" min={0} name="maxCovered_Area" required onChange={handleMainForm}/>
                          <div style={{marginTop:"20px",marginBottom:"20px",fontWeight:"bold"}}>Write about the Project</div>
-                         <textarea id="w3review" name="aboutProject" rows="5" cols="84" onChange={handleMainForm}/>
+                         <textarea id="w3review" name="aboutProject" rows="5" cols="84" required onChange={handleMainForm}/>
                          <div>
                          <div style={{marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Builder Select</div>
                          <select name="builderName" id="developers" className="selectBuilder" data-show-subtext="true" data-live-search="true" required onChange={handleMainForm}>
-                         <option value="null" disabled selected>Choose the Developer</option>
+                         <option value="null" disabled required selected>Choose the Developer</option>
                          <option value="adani">Adani</option>
                          <option value="ashiana">Ashiana</option>
                          <option value="aipl">Aipl</option>
@@ -398,7 +424,7 @@ function AdminMain() {
                          <div style={{marginTop:"20px",marginBottom:"20px",fontWeight:"bold"}}>Attach Some Photos</div>
                          <div>
                             <div style={{fontSize:"12px",marginTop:"10px"}}>( Site Image )</div>
-                            <input type="file" name="sitePlan" accept="image/*" id="mainImage" onChange={handleImageChange}/>
+                            <input type="file" name="sitePlan" accept="image/*" id="mainImage" required onChange={handleImageChange}/>
                          </div>
                          <div>
                          <div style={{fontSize:"12px",marginTop:"10px"}}>( Main Images )</div>
@@ -511,27 +537,7 @@ function AdminMain() {
                            </div>
                          </div>
 
-                         <div className="specification">
-                         <div style={{marginTop:"20px",marginBottom:"20px",fontWeight:"bold"}}>Write about the Specifications</div>
-                            <div>
-                                <input type="text" placeholder="livingroom" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="bedroom" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="kitchen" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="bathroom" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="balcony" />
-                            </div>
-                         </div>
-
-
-                         <button type="submit" style={{marginTop:"10px",margin:"2% 45%",border:"none",background:"orange",padding:"5px 10px",borderRadius:"10px"}} >Submit</button>
+                         <button type="submit" style={{marginTop:"10px",margin:"2% 45%",border:"none",background:"orange",padding:"5px 10px",borderRadius:"10px"}} >{submited?"Submitting...":"Submit"}</button>
                          </form>
                         </div>
                       <div></div>
@@ -541,19 +547,58 @@ function AdminMain() {
               </div>
             )}
 
+            {selectedTab === "EnquiriesSection" && (
+              <div className='mainSed'>
+              <div className="" style={{marginBottom:"10px",fontSize:"large",fontWeight:"bold"}}>Enquiries Received</div>
+              <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>S No.</th>
+                  <th>Name</th>
+                  <th>Phone No.</th>
+                  <th>Email</th>
+                  <th className="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              {FrontPageEnquiries.map((elem,index)=>{
+                var count =index+1;
+                return(
+                  <tr>
+                  <td>{count}</td>
+                  <td>{elem.name}</td>
+                  <td>+91 {elem.mobile}</td>
+                  <td>{elem.email}</td>
+                  <td className="text-center">
+                  <button className="btn btn-sm btn-success px-2">View</button>
+                  <button className="btn btn-sm px-2">Edit</button>
+                  <button className="btn btn-sm btn-danger px-2">Complete</button>
+                  </td>
+                </tr>
+                )
+                
+              })}
+              </tbody>
+            </Table>
+              </div>
+            )}
             {selectedTab === "blogSection" && (
               <div className='mainSed'>Blog Section</div>
             )}
           </div>
         </div>
       </div>
-            }
+      }
     </Wrapper>
   );
 }
 
 export default AdminMain;
 const Wrapper = styled.section`
+.hjMmlm section{
+  display:none !important;
+  visibility:none !important;
+}
 .dddddd input{
   width:100%;
 }
@@ -577,6 +622,7 @@ const Wrapper = styled.section`
     padding: 20px;
     cursor: pointer;
   }
+  
   .active {
     color: red !important;
     background: white;

@@ -1,34 +1,55 @@
-/** @format */
-
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import axios from "axios";
 
 function FormHome() {
+  const[isLoading,setIsLoading]=useState(false);
+
+  const handleLoadingClose =()=>{setIsLoading(false)};
+  const handleLoadingStart =()=>{setIsLoading(true)};
+
+  const FORMURL="https://api.100acress.com/contact_Insert";
+
+  const[formDataInquiry,setFormDataInquiry] = useState({
+    name:"",
+    mobile:"",
+    email:"",
+    message:"",
+  })
+
+  function handleMainForm(e){
+    setFormDataInquiry({...formDataInquiry,[e.target.name]:e.target.value})
+ }
+ function submitFormData(e){
+  handleLoadingStart();
+  e.preventDefault();
+  axios({
+    method:"post",
+    url:FORMURL,
+    data:formDataInquiry,
+  })
+  .then(res=>{
+    console.log(res.data.message)
+    alert("Your Message has been sent!");
+    handleLoadingClose();
+  })
+  .catch(err=>{
+    console.log(err.response);
+  })
+}
   return (
     <Wrapper className='section'>
       <div className='formHomeStyle d-flex align-items-center'>
         <div className='cJd98IC'>
           <h4 style={{fontWeight:"600"}}>Let us find your Dream Property</h4>
           <p>Connect to Property Expert Now</p>
-          <form method='post'>
+          <form onSubmit={submitFormData}>
             <div className='d-flex flex-wrap'>
-              <input type='text' name='name' id='name' placeholder='Name*' />
-              <input type='tel' name='phone' id='phone' placeholder='Phone*' />
-              <input type='email' name='email' id='email' placeholder='Email' />
-              <select name='city' id='city' placeholder='Select City*'>
-                <option value='default' selected disabled>
-                  Select City*
-                </option>
-                <option value='Gurgaon'>Gurgaon</option>
-                <option value='Sohna'>Sohna</option>
-                <option value='Noida'>Noida</option>
-                <option value='Bhuvneshwar'>Bhuvneshwar</option>
-                <option value='Faridabad'>Faridabad</option>
-                <option value='Indore'>Indore</option>
-                <option value='Jaipur'>Jaipur</option>
-                <option value='Others'>Others</option>
-              </select>
-              <input type='Submit' value='Submit' />
+              <input type='text' name='name' id='name' placeholder='Name*' required onChange={handleMainForm}/>
+              <input type='tel' name='mobile' id='phone' placeholder='Phone*' required onChange={handleMainForm}/>
+              <input type='email' name='email' id='email' placeholder='Email' required onChange={handleMainForm}/>
+              <input type="text" name="message" id="message" placeholder="Enter you query" required onChange={handleMainForm}/>
+              <input type='submit' value={isLoading ? `Submitting` : "Submit"} />
             </div>
           </form>
         </div>
@@ -82,7 +103,19 @@ input[type="submit"]{
     background-color:red;
     color:white;
 }
-@media screen and (max-width:900px){
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media screen and (max-width:900px) and (min-width:501px){
     .cJd98IC{
         flex:0 0 50%;
     }
@@ -90,7 +123,7 @@ input[type="submit"]{
         flex:0 0 50%;
     }
 }
-@media screen and (max-width:400px){
+@media screen and (max-width:500px){
     .formHomeStyle{
         flex-direction:column;
         padding:10px !important;

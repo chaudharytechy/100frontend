@@ -51,6 +51,7 @@ function MiddleMain() {
       </div>
       )
   }
+  const StatusFinal = status.charAt(0).toUpperCase() + status.slice(1);
   const properties = [1, 2, 3, 4, 5, 6, 7, 8];
   const amenitiesFinal=amentites[0].split(",");
   console.log(BHK_details)
@@ -115,7 +116,7 @@ function MiddleMain() {
             <li className='lIst_Hover'>
               <a href='#amenities'>Amenities</a>
             </li>
-            <li className='lIst_Hover'>Broucher</li>
+            <li className='lIst_Hover'>Brochure</li>
             <li className='lIst_Hover'>
               <a href='#location-map'>Location Map</a>
             </li>
@@ -140,7 +141,7 @@ function MiddleMain() {
                 <span>{location}</span>
               </div>
             </div>
-            <div className='ndMO'>₹ price</div>
+            <div className='ndMO'>₹ {price} Cr</div>
           </div>
           <div>
           <img src={photo[0].url} alt="" style={{width:"100%",borderRadius:"15px",height:"500px"}}/>
@@ -162,7 +163,7 @@ function MiddleMain() {
             </div>
             <div className='mlsM'>
               <span>Status</span>
-              <p className='NNO'>{status}</p>
+              <p className='NNO'>{StatusFinal}</p>
             </div>
             <div className='mlsM'>
               <span>Rera No</span>
@@ -190,11 +191,7 @@ function MiddleMain() {
                     <div>
                       <p>Floor Plans</p>
                     </div>
-                    <div>
-                      <button className='btnApart bor-red-20'>2 BHK</button>
-                      <button className='btnApart bor-red-20'>3 BHK</button>
-                      <button className='btnApart bor-red-20'>4 BHK</button>
-                    </div>
+                    
                   </div>
                   <div className='d-flex'>
                     <Carousel show={1} slide={1} swiping={true} dynamic={true} rightArrow={<div className="cmNIdpO">{">"}</div>} leftArrow={<div className="cmNIdpO">{"<"}</div>}>
@@ -415,12 +412,6 @@ function MiddleMain() {
                 <div className='TopElM ldM'>
                   <p>About Developer</p>
                   <div className='d-flex dfvb'>
-                    <img
-                      src={Image2}
-                      alt='Developer Image'
-                      srcset=''
-                      className='divImg'
-                    />
                     <span className='discR'>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Maxime odit unde perferendis sunt quas quasi tenetur est

@@ -14,6 +14,8 @@ function FeaturedSection() {
         <div className='sshdNBC d-flex justify-content-around align-items-center flex-wrap'>
         {PreLuanchByBuilder.map((elem)=>{
           const URL=`/${elem.projectName}/${elem._id}`
+          const name=elem.builderName.charAt(0).toUpperCase() + elem.builderName.slice(1);
+          const Status=elem.status.charAt(0).toUpperCase() + elem.status.slice(1);
           return (
             <div className='flex1 mt-3 mb-3'>
             <Link to={URL}>
@@ -29,7 +31,7 @@ function FeaturedSection() {
               <p className='ft-cl-gr'>{elem.city} · {elem.location} </p>
               <div className="_1Hy63 d-flex justify-content-between align-items-center">
               <div style={{width:"fit-content"}}> 
-                <p className='smallText _2rhE- li-ht-22'>{elem.builderName} · 2023 · {elem.status}</p>
+                <p className='smallText _2rhE- li-ht-22'>{name} · 2023 · {Status}</p>
                 <p className='smallText _2rhE- li-ht-22'>74 units · {elem.configuration}</p>
               </div>
               </div>
@@ -106,7 +108,7 @@ const Wrapper = styled.section`
   @media screen and (max-width: 600px) {
     margin: 8% auto;
     .dkMMCKpP{
-      width:90vw;
+      width:100%;
     }
     .flex1 {
       width: 350px;

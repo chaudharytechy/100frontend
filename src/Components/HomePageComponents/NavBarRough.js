@@ -8,11 +8,11 @@ import { MdRocketLaunch } from "react-icons/md";
 import { GiSpectacles } from "react-icons/gi";
 import { GiVillage } from "react-icons/gi";
 import { HiBars3 } from "react-icons/hi2";
-import { ABOUT, BLOG, KNOWABOUT, LOGIN, ROOT } from "../../lib/route";
+import { ABOUT, BLOG, ROOT, PROPERTIES } from "../../lib/route";
 import { Link, Navigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 
-function FinalNavBar() {
+function CurrentNavBar() {
   const [showNav, setShowNav] = useState(false);
   const URL="/projects"
   return (
@@ -28,6 +28,7 @@ function FinalNavBar() {
         <div
           className='barDotMenu'
           style={{ width: "fit-content", marginBottom: "5px",marginTop: "5px" }}>
+          <span  className="p-2" style={{color:"white",fontSize:"18px"}} onclick={window.location.href = 'tel:+919811750130'}>+91 9811750130</span>
           <HiBars3 size={35} color='white' onClick={() => setShowNav(!showNav)} />
         </div>
 
@@ -55,23 +56,6 @@ function FinalNavBar() {
             </div>
             <div className='MBflx' style={{background:"red"}}>
           <ul className='ulfx _1grx flex-column'>
-            <li className='pxrE el1'>
-              <span className='pxrETXT'>
-                <a>Buy</a>
-              </span>
-            </li>
-            <li>
-              <span className='pxrETXT'>
-                <a>Rent</a>
-              </span>
-              
-            </li>
-            <li className='_3px49x '>
-              <span className='pxrETXT'>
-                <a>Sell</a>
-              </span>
-            </li>
-
             <li>
               <Link to={ROOT} className='linkEl'>
                 Home
@@ -82,16 +66,11 @@ function FinalNavBar() {
                 About
               </Link>
             </li>
+            
             <li className='_3px49x'>
-              <span className='pxrETXT'>
-                <a>New Launches</a>
-              </span>
-              
-            </li>
-            <li className='_3px49x'>
-              <span className='pxrETXT'>
-                <a>Properties</a>
-              </span>
+               <Link to={PROPERTIES} className='linkEl'>
+                Projects
+               </Link>
             </li>
 
             <li>
@@ -99,117 +78,14 @@ function FinalNavBar() {
                 Blog
               </Link>
             </li>
+            
           </ul>
-          <ul className='ulfx _2grx flex-column'>
-            <li className='_6bnYTum'>
-              <span>Post Properties </span>
-              <span className='_73exMP'>FREE</span>
-            </li>
-            <li>
-              <Link to={LOGIN} className='linkEl'>
-                Login
-              </Link>
-            </li>
-          </ul>
+          
         </div>
           </div>
         )}
         <div className='NBflx'>
           <ul className='ulfx _1grx' style={{marginTop:"8px"}}>
-            <li className='pxrE el1'>
-              <span className='pxrETXT'>
-                <a>Buy</a>
-              </span>
-              <ul className='_2emBLM'>
-                <li className='_3emBLMe'>
-                  <span className='_2kdSPM'>RESIDENCIAL</span>
-                  <ul className='_3euEM _1uef'>
-                    <li>Villas for Sale</li>
-                    <li>Duplex for Sale</li>
-                    <li>Houses for Sale</li>
-                    <li>Bungalow for Sale</li>
-                    <li>Apartments for Sale</li>
-
-                    <hr style={{ margin: "7px 0px" }} />
-                    <li>All Residencial for Sale</li>
-                  </ul>
-                </li>
-                <li className='_3emBLMe'>
-                  <span className='_2kdSPM'>COMMERCIAL</span>
-                  <ul className='_3euEM _2uef'>
-                    <li>Retail for Sale</li>
-                    <li>Offices for Sale</li>
-                    <li>Industrial for Sale</li>
-                    <li>Warehouses for Sale</li>
-                    <li>Shophouses for Sale</li>
-                    <hr style={{ margin: "7px 0px" }} />
-                    <li>All Commercial for Sale</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <span className='pxrETXT'>
-                <a>Rent</a>
-              </span>
-              <ul className='_2emBLM'>
-                <li className='_3emBLMe'>
-                  <span className='_2kdSPM'>RESIDENCIAL</span>
-                  <ul className='_3euEM _1uef'>
-                    <li>Villas for Rent</li>
-                    <li>Duplex for Rent</li>
-                    <li>Houses for Rent</li>
-                    <li>Bungalow for Rent</li>
-                    <li>Apartments for Rent</li>
-
-                    <hr style={{ margin: "7px 0px" }} />
-                    <li>All Residencial for Rent</li>
-                  </ul>
-                </li>
-                <li className='_3emBLMe'>
-                  <span className='_2kdSPM'>COMMERCIAL</span>
-                  <ul className='_3euEM _2uef'>
-                    <li>Retail for Rent</li>
-                    <li>Offices for Rent</li>
-                    <li>Industrial for Rent</li>
-                    <li>Warehouses for Rent</li>
-                    <li>Shophouses for Rent</li>
-                    <hr style={{ margin: "7px 0px" }} />
-                    <li>All Commercial for Rent</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li className='_3px49x _exJRE'>
-              <span className='pxrETXT'>
-                <a>Sell</a>
-              </span>
-              <ul className='_2emBLM'>
-                <li className='_3emBLMe'>
-                  <span className='_2kdSPM _elm'>Post as Owner</span>
-                  <ul className='_3euEM _1uef'>
-                    <li className='_lmxE pplf'>
-                      <div className='amidd'>
-                        <GiFamilyHouse size='40' />
-                      </div>
-                      <div className='exori'>
-                        <p className='_2hduom'>Residencial</p>
-                        <span className='_2hskbj'>Houses, Complexes</span>
-                      </div>
-                    </li>
-                    <li className='_lmxE pplf'>
-                      <div className='amidd'>
-                        <MdStoreMallDirectory size='40' />
-                      </div>
-                      <div className='exori'>
-                        <p className='_2hduom'>Commercial</p>
-                        <span className='_2hskbj'>Offices, Shops</span>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
 
             <li>
               <Link to={ROOT} className='linkEl'>
@@ -221,43 +97,7 @@ function FinalNavBar() {
                 About
               </Link>
             </li>
-            <li className='_3px49x'>
-              <span className='pxrETXT'>
-                <a>New Launches</a>
-              </span>
-              <ul className='_2emBLM _nEXRT'>
-                <li className='_3emBLMe'>
-                  <ul className='_3euEM _1uef'>
-                    <li className='_lmxE pplf'>
-                      <div className='amidd'>
-                        <MdRocketLaunch size='35' />
-                      </div>
-                      <div className='exori'>
-                        <p className='_2hduom'>New Launches In Gurgaon</p>
-                        <span className='_2hskbj'>
-                          See the Most recent to hit the market
-                        </span>
-                      </div>
-                    </li>
-
-                    <li className='_lmxE pplf'>
-                      <Link to={KNOWABOUT} className='linkEl'>
-                        <div className='amidd'>
-                          <GiSpectacles size='35' />
-                        </div>
-
-                        <div className='exori'>
-                          <p className='_2hduom'>New Launches Knowabouts</p>
-                          <span className='_2hskbj'>
-                            Drive into the Collections
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
+            
             <li className='_3px49x'>
               <span className='pxrETXT'>
                 <a>Projects</a>
@@ -290,18 +130,7 @@ function FinalNavBar() {
             </li>
           </ul>
           <ul className='ulfx _2grx'>
-            <li>
-              <BsFolder />
-            </li>
-            <li className='_6bnYTum'>
-              <span>Post Properties </span>
-              <span className='_73exMP'>FREE</span>
-            </li>
-            <li>
-              <Link to={LOGIN} className='linkEl'>
-                Login
-              </Link>
-            </li>
+            <span>+91 9811750130</span>
           </ul>
         </div>
       </div>
@@ -309,7 +138,7 @@ function FinalNavBar() {
   );
 }
 
-export default FinalNavBar;
+export default CurrentNavBar;
 const Wrapper = styled.section`
 position:sticky;
 top:0px;

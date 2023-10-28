@@ -49,7 +49,7 @@ function PropertyCard(elem) {
       const{projectName,_id,photo} =elem;
       const URL=`https://api.100acress.com/preLaunch/bhk/insert/${_id}`
       
-      const Path=`/protected/private/admin/${_id}`
+      const Path=`/protected/private/admin/projectView/${_id}`
       function handleDeleteSection(){
         
         axios({

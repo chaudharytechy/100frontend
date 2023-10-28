@@ -20,11 +20,12 @@ function PropViewCard(elem) {
   const handleBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
   };
-  const PropApi=`/${projectName}/${_id}`
-  projectName.replaceAll("-"," ");
+  const urlProject=projectName.toLowerCase().replaceAll(" ","-")
+  const PropApi=`/${urlProject}/${_id}`
+
   return (
     <Wrapper className='section'>
-      <div className='mainFrame bc-rd-23'>
+      <div className='mainFrame bc-rd-23 card'>
         <div className='contentsJm w-100 bc-rd-23 d-flex'>
           <div className='leftMcn'>
             <div className='imgeProp bc-rd-23' style={{backgroundImage:`url(${photo[0].url})`,backgroundSize:"cover"}}>
@@ -102,7 +103,7 @@ function PropViewCard(elem) {
               </div>
             </div>
 
-            <div className='mt-4' style={{ width: "480px" }}>
+            <div className='mt-4 cardText'>
               <p className='ft-sz-14'>
                 {displayText}
                 <span
@@ -117,7 +118,7 @@ function PropViewCard(elem) {
               </p>
             </div>
 
-            <div className='fedhfmk d-flex'>
+            <div className='fedhfmk d-flex flex-wrap'>
               <div className='fedLLC bc-rd-15 d-flex justify-content-center align-items-center mr-1'>
                 <span className='px-3 py-1 ft-sz-12 font-weight-bold'>
                   Ready to Move In
@@ -179,8 +180,11 @@ const Wrapper = styled.section`
   .bc-rd-15 {
     border-radius: 15px;
   }
+  .cardText{
+    max-width:480px;
+  }
   .mainFrame {
-    width: 900px;
+    max-width: 900px;
     height: auto;
     background: white;
     box-shadow: 0 0 10px 0 #0000001a;
@@ -208,9 +212,11 @@ const Wrapper = styled.section`
   .contentsJm {
   }
   .imgeProp {
-    width: 282px;
+    max-width: 282px;
+    width:282px;
     height: 210px;
     background-color: #c9f3ee;
+    background-position:center;
   }
   .BhCl {
     width: fit-content;
@@ -237,5 +243,16 @@ const Wrapper = styled.section`
   }
   .fedhfmk >button{
     border:none !important;
+  }
+  @media screen and (max-width: 500px) {
+    .contentsJm{
+      flex-direction:column;
+    }
+    .cmMidSec{
+      flex-direction:column;
+    }
+    .ftred{
+      display:none !important;
+    }
   }
 `;

@@ -39,7 +39,7 @@ function ViewProperty() {
   return (
     <Wrapper className="div">
     <div className="formS">
-    <div style={{textAlign:"center",fontSize:"bold",fontSize:"25px"}}>Project Detail</div>
+    <div style={{textAlign:"center",fontSize:"bold",fontSize:"25px",paddingBottom:"10px",borderBottom:"1px solid grey"}}>Project Detail</div>
     <form>
     <div style={{marginTop:"20px",marginBottom:"5px",fontWeight:"bold"}}>Project Name</div>
      <input type="text" placeholder="Project Name" name="projectName" readOnly value={projectName}/>
@@ -64,7 +64,7 @@ function ViewProperty() {
      <div style={{marginTop:"20px",marginBottom:"5px",fontWeight:"bold"}}>Maximum Covered Area</div>
      <input type="number" placeholder="maxCovered Area (sq.ft.)" min={0} name="maxCovered_Area" readOnly value={maxCovered_Area}/>
      <div style={{marginTop:"20px",marginBottom:"5px",fontWeight:"bold"}}>About Project</div>
-     <textarea id="w3review" name="aboutProject" readOnly value={aboutProject} rows={4} cols={80}/>
+     <textarea id="w3review" name="aboutProject" readOnly value={aboutProject} rows={7}/>
      <div>
      <div style={{marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Builder Name</div>
      <input type="text" name="builderName" id="builderName" readOnly value={builderName}/>
@@ -85,7 +85,7 @@ function ViewProperty() {
      <div className="amenitiesPage">
      <div style={{marginTop:"20px",marginBottom:"5px",fontWeight:"bold"}}>Amenitites Listed</div>
        <div className="d-flex flex-wrap">
-        <textarea name="Amenities" id="amentities" rows={4} cols={80} readOnly value={amentites}></textarea>
+        <textarea name="Amenities" id="amentities"  readOnly value={amentites} rows={7}/>
        </div>
      </div>
      <Link to={UrlAdmin} relative='path'>
@@ -102,8 +102,11 @@ const Wrapper = styled.div`
 box-sizing:border-box;
 width:100%;
 .formS{
-    margin:3rem auto;
+    margin:2rem auto;
     width:50%;
+    padding:1rem;
+    border:1px solid grey;
+    border-radius:15px;
 }
 input[type="text"],input[type="number"]{
     width:100%;
@@ -112,6 +115,7 @@ input[type="text"],input[type="number"]{
 }
 textarea{
   outline:none;
-    border:0px solid;
+  border:0px solid;
+  width:100%;
 }
 `

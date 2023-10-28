@@ -502,4 +502,15 @@ const Wrapper = styled.section`
   label{
     font-size:14px;
   }
+  @media only screen and (max-width: 1100px) {
+    .li_options{
+      display:none;
+    }
+    .li_items{
+      width:100%;
+    }
+    .sorting-filter{
+      display:none;
+    }
+  }
 `;

@@ -5,10 +5,13 @@ import App from "./App";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { AppProvider } from "./Context/productContext";
+import { EnquiryProvider } from "./Context/enquiryContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <AppProvider>
+  <AppProvider>
+    <EnquiryProvider>
       <App />
-    </AppProvider>
+    </EnquiryProvider>
+  </AppProvider>
 );
