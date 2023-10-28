@@ -120,6 +120,14 @@ const Wrapper = styled.section`
     .djqwUUJNCO {
       background-image: url("../../Images/Capture1.png");
       background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .djqwUUJNCO {
+      background-image: url("../../Images/Capture1.png");
+      background-repeat: no-repeat;
+      background-position: right;
     }
   }
 `;

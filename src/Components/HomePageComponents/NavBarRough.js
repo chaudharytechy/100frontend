@@ -28,7 +28,7 @@ function CurrentNavBar() {
         <div
           className='barDotMenu'
           style={{ width: "fit-content", marginBottom: "5px",marginTop: "5px" }}>
-          <span  className="p-2" style={{color:"white",fontSize:"18px"}} onclick={window.location.href = 'tel:+919811750130'}>+91 9811750130</span>
+          <span ><a href="tel:+919811750130" className="p-2" style={{color:"white",fontSize:"18px"}}>+91 9811750130</a></span>
           <HiBars3 size={35} color='white' onClick={() => setShowNav(!showNav)} />
         </div>
 
@@ -68,7 +68,7 @@ function CurrentNavBar() {
             </li>
             
             <li className='_3px49x'>
-               <Link to={PROPERTIES} className='linkEl'>
+               <Link to={URL} className='linkEl'>
                 Projects
                </Link>
             </li>
