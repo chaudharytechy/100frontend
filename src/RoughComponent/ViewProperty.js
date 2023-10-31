@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { useProductContext } from '../../Context/productContext'
+import { useProductContext } from '../Context/productContext';
 import { InfinitySpin } from  'react-loader-spinner'
 
-function EditableProperty() {
+function ViewProperty() {
 
     const {singleProperty,isSingleLoading,getSingleProduct} = useProductContext();
     const {id}=useParams();
@@ -97,7 +97,7 @@ function EditableProperty() {
   )
 }
 
-export default EditableProperty
+export default ViewProperty
 const Wrapper = styled.div`
 box-sizing:border-box;
 width:100%;

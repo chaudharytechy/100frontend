@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import Image from "../../Images/100acress.png";
-import { BsFolder } from "react-icons/bs";
 import styled from "styled-components";
-import { GiFamilyHouse } from "react-icons/gi";
-import { MdStoreMallDirectory } from "react-icons/md";
-import { MdRocketLaunch } from "react-icons/md";
-import { GiSpectacles } from "react-icons/gi";
 import { GiVillage } from "react-icons/gi";
 import { HiBars3 } from "react-icons/hi2";
 import { ABOUT, BLOG, ROOT, PROPERTIES } from "../../lib/route";
 import { Link, Navigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
+import { BsTelephone } from "react-icons/bs"
+import { FiPhoneCall } from "react-icons/fi"
 
 function CurrentNavBar() {
   const [showNav, setShowNav] = useState(false);
@@ -21,14 +17,17 @@ function CurrentNavBar() {
       
         <div className='1euNB' style={{cursor:"pointer"}}>
         <Link to={ROOT}>
-          <img src="../../Images/mainLogo.png" alt='' width='200' />
+          <img src="../../Images/mainLogo.png" alt='' className="imgMustLgogo" />
         </Link>
         </div>
         
         <div
           className='barDotMenu'
           style={{ width: "fit-content", marginBottom: "5px",marginTop: "5px" }}>
-          <span ><a href="tel:+919811750130" className="p-2" style={{color:"white",fontSize:"18px"}}>+91 9811750130</a></span>
+          <span style={{paddingRight:"5px"}} className="phoneIconAnimation"><FiPhoneCall strokeWidth={3} color="white" size={18}/></span>
+          <span>
+          <a href="tel:+4733378901"  className="p-1" style={{color:"white",fontSize:"18px"}}>9811750130</a>
+          </span>
           <HiBars3 size={35} color='white' onClick={() => setShowNav(!showNav)} />
         </div>
 
@@ -38,7 +37,7 @@ function CurrentNavBar() {
             style={{
               background: "red",
               zIndex: "999",
-              width: "97%",
+              width: "100%",
             }}>
             <div className='d-flex align-items-center justify-content-between  pr-3'>
               <div className='1euNB'>
@@ -57,24 +56,24 @@ function CurrentNavBar() {
             <div className='MBflx' style={{background:"red"}}>
           <ul className='ulfx _1grx flex-column'>
             <li>
-              <Link to={ROOT} className='linkEl'>
+              <Link to={ROOT} className='linkEl' onClick={() => setShowNav(!showNav)}>
                 Home
               </Link>
             </li>
             <li>
-              <Link to={ABOUT} className='linkEl'>
+              <Link to={ABOUT} className='linkEl' onClick={() => setShowNav(!showNav)}>
                 About
               </Link>
             </li>
             
             <li className='_3px49x'>
-               <Link to={URL} className='linkEl'>
+               <Link to={URL} className='linkEl' onClick={() => setShowNav(!showNav)}>
                 Projects
                </Link>
             </li>
 
             <li>
-              <Link to={BLOG} className='linkEl'>
+              <Link to={BLOG} className='linkEl' onClick={() => setShowNav(!showNav)}>
                 Blog
               </Link>
             </li>
@@ -130,7 +129,8 @@ function CurrentNavBar() {
             </li>
           </ul>
           <ul className='ulfx _2grx'>
-            <span>+91 9811750130</span>
+            <span style={{paddingRight:"5px"}} className="phoneIconAnimation"><FiPhoneCall strokeWidth={3}/></span>
+            <span style={{fontWeight:"bold"}}>9811750130</span>
           </ul>
         </div>
       </div>
@@ -142,6 +142,9 @@ export default CurrentNavBar;
 const Wrapper = styled.section`
 position:sticky;
 top:0px;
+.imgMustLgogo{
+  width:200px;
+}
 z-index:999;
   .ieuNB {
     display: flex;
@@ -172,8 +175,6 @@ z-index:999;
     display: flex;
     align-items: center;
     background:red;
-    padding: 0px 10px;
-    border-radius:0px 0px 10px 10px;
   }
   hr{
     color:black !important;
@@ -211,6 +212,18 @@ z-index:999;
     position: absolute;
     top: 140%;
     z-index: 20;
+  }
+  .phoneIconAnimation{
+    animation:shake 0.8s linear infinite;
+  }
+  @-webkit-keyframes shake{
+    0% {-webkit-transform: none;transform: none;}
+    15% {-webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);}
+    30% {-webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);}
+    45% {-webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);}
+    60% {-webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);}
+    75% {-webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);}
+    100% {-webkit-transform: none;transform: none;}
   }
   ._2emBLM li {
     align-items: inherit;
@@ -368,7 +381,7 @@ z-index:999;
   }
   @media screen and (max-width: 1100px) and (min-width: 400px) {
     .NBflx {
-      display: none;
+      display: none !important;
     }
     .barDotMenu {
       display: block;
@@ -378,8 +391,11 @@ z-index:999;
     }
   }
   @media screen and (max-width: 400px) {
+    .imgMustLgogo{
+      width:150px !important;
+    }
     .NBflx {
-      display: none;
+      display: none !important;
     }
     .barDotMenu {
       display: block;
@@ -387,5 +403,6 @@ z-index:999;
     .Mflx {
       justify-content: space-between;
     }
+    
   }
 `;

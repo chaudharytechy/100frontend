@@ -3,16 +3,18 @@ import styled from "styled-components";
 import { RxCross1 } from "react-icons/rx";
 import axios from "axios"
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { useProductContext } from "../../Context/productContext";
 import PropertyCard from "./PropertyCard";
 import Table from 'react-bootstrap/Table';
 import { useEnquiryContext } from "../../Context/enquiryContext";
+import ModalProp from "./ModalProp";
+import PropModal from "./PropModal";
 
 function AdminMain() {
   const {PreLaunchProperties,isPreLaunchLoading} = useProductContext();
   const {FrontPageEnquiries,isfrontEnquiriesLoading} = useEnquiryContext();
 
-  console.log(FrontPageEnquiries);
 
   const[loggedIn,setLoggedIn] = useState(true);
   const [show, setShow] = useState(false);
@@ -20,9 +22,12 @@ function AdminMain() {
   const [selectedTab, setSelectedTab] = useState("infoelm");
   const [showForm, setShowForm] = useState(false);
   const[submited,setSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const closeSubmit=()=>{setSubmitted(false)}
   const openSubmit=()=>{setSubmitted(true)}
+  const handleModalClose = () => {setShowModal(false)};
+  const handleModalShow = (index) => {setShowModal(index)};
   
   const Elem = [...PreLaunchProperties];
   
@@ -285,6 +290,7 @@ function AdminMain() {
                       Add New
                     </button>
                   </div>
+                  {/*  
                   <div className="sddnsj d-flex flex-wrap justify-content-between mt-4">
                   {Elem.map((elem)=>{
                     return(
@@ -292,6 +298,49 @@ function AdminMain() {
                     )
                   })}
                   </div>
+                */}
+                <div className="" style={{marginBottom:"10px",fontSize:"large",fontWeight:"bold"}}>All Projects</div>
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>S No.</th>
+                      <th>Name</th>
+                      <th>Id</th>
+                      <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {Elem.map((elem,index)=>{
+                      var count=index+1;
+                      return(
+                        <tr key={index}>
+                          <td>{count}</td>
+                          <td>{elem.projectName}</td>
+                          <td>{elem._id}</td>
+                          <td className="text-center">
+                            <button className="btn btn-sm btn-success px-2" onClick={() =>handleModalShow(index)}>View</button>
+                            <button className="btn btn-sm px-2">Edit</button>
+                            <button className="btn btn-sm px-2">Add Bhk</button>
+                            <button className="btn btn-sm btn-danger px-2">Delete</button>
+                            <Modal show={showModal === index} onHide={handleModalClose} centered>
+                            <Modal.Header closeButton>
+                              <Modal.Title>Project Detail</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <PropModal key={elem._id} {...elem} />
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button variant="secondary" onClick={handleModalClose}>
+                                Close
+                              </Button>
+                            </Modal.Footer>
+                            </Modal>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                </tbody>
+                </Table>
                 </div>
                 {showForm && (
                   <div
@@ -405,6 +454,9 @@ function AdminMain() {
                          <option value="vatika">Vatika</option>
                          <option value="whiteland">Whiteland</option>
                        </select>
+
+                       <div style={{marginTop:"20px",marginBottom:"20px",fontWeight:"bold"}}>About Developer</div>
+                         <textarea id="w3review" name="Aboutdeveloper" rows="5" cols="84" required onChange={handleMainForm}/>
                        
                          </div>
                          <div style={{marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Location</div>
@@ -564,15 +616,27 @@ function AdminMain() {
               {FrontPageEnquiries.map((elem,index)=>{
                 var count =index+1;
                 return(
-                  <tr>
-                  <td>{count}</td>
-                  <td>{elem.name}</td>
-                  <td>+91 {elem.mobile}</td>
-                  <td>{elem.email}</td>
-                  <td className="text-center">
-                  <button className="btn btn-sm btn-success px-2">View</button>
-                  <button className="btn btn-sm px-2">Edit</button>
-                  <button className="btn btn-sm btn-danger px-2">Complete</button>
+                  <tr key={index}>
+                    <td>{count}</td>
+                    <td>{elem.name}</td>
+                    <td>+91 {elem.mobile}</td>
+                    <td>{elem.email}</td>
+                    <td className="text-center">
+                    <button className="btn btn-sm  px-2" onClick={() =>handleModalShow(index)}>View</button>
+                    <button className="btn btn-sm btn-danger px-2">Completed</button>
+                    <Modal show={showModal === index} onHide={handleModalClose} centered>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Enquiries Detail</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <ModalProp key={elem._id} {...elem} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={handleModalClose}>
+                      Close
+                      </Button>
+                    </Modal.Footer>
+                    </Modal>
                   </td>
                 </tr>
                 )
@@ -610,23 +674,27 @@ const Wrapper = styled.section`
   }
   .sideBarMain {
     flex: 0 0 20%;
-    background: red;
+    background: white;
     height:100vh;
+    position:sticky;
+    top:40px;
+    padding-right:20px;
+    padding-left:5px;
   }
   .contentMain {
     flex: 0 0 80%;
   }
   .fmL > .listElm {
-    color: white;
+    color: red;
     font-size: large;
     padding: 20px;
     cursor: pointer;
   }
   
   .active {
-    color: red !important;
-    background: white;
-    border-radius: 10px 0px 0px 10px;
+    color: white !important;
+    background: red;
+    border-radius: 20px;
   }
   .mainSed {
     margin: 30px;
@@ -654,9 +722,9 @@ const Wrapper = styled.section`
     font-size: 17px;
   }
   .listElm:hover {
-    background: white;
-    border-radius: 10px 0px 0px 10px;
-    color: red !important;
+    background: red;
+    border-radius:20px;
+    color: white !important;
   }
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {

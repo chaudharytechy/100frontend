@@ -17,7 +17,6 @@ function PropertyCard(elem) {
     const handleShowForm =() => setShowForm(true);
     const handleCloseForm =() => setShowForm(false);
     
-    
     const handleImageChange = (e) => {
       const { name, files } = e.target;
       const updatedFormData = { ...formData };
@@ -115,14 +114,9 @@ function PropertyCard(elem) {
             <input type="number" name="possession" id="form_input_Bhk" className="input_bhk" placeholder='Possession' min={0} style={{width:"100%",marginBottom:"10px",paddingLeft:"10px"}} onChange={handleMainForm}/>
             <div style={{fontWeight:"bold"}}>Attach Floor Plan Image</div>
             <input type="file" name="image" accept='image/*' id="form_input_Bhk" onChange={handleImageChange} />
-            <button type="submit" style={{border:"none",padding:"5px 20px"}}>Submit</button>
+            <button type="submit" style={{border:"none",padding:"5px 20px",background:"#198754",color:"white",borderRadius:"15px"}}>Submit</button>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseForm}>
-            Close
-          </Button>
-        </Modal.Footer>
     </Modal>
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={photo[0].url} />

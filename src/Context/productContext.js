@@ -39,7 +39,8 @@ const AppProvider =({children}) => {
         dispatch({type:"SET_SINGLE_LOADING"})
         try {
             const res = await axios.get(url);
-            const singleProperty =await res.data?.data;
+            const singleProperty =await res.data?.data[0];
+            console.log(singleProperty,"Hello")
             dispatch({type:"GET_SINGLE_PRODUCT",payload: singleProperty})
         } catch (error) {
             dispatch({type:"SET_SINGLE_ERROR"})

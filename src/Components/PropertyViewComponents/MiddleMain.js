@@ -26,7 +26,7 @@ const API= "https://api.100acress.com/preLaunch/view";
 
 function MiddleMain() {
   const {singleProperty,isSingleLoading,getSingleProduct,PreLuanchSimilarProperties,PreLuanchFeatProperties} = useProductContext();
-  const {id} = useParams();
+  const {url} = useParams();
   
   const [formValue, setFormValue] = useState({
     fname: "",
@@ -38,11 +38,11 @@ function MiddleMain() {
     window.open('mailto:cs@100acress.com');
   }
   useEffect(()=>{
-    getSingleProduct(`${API}/${id}`);
+    getSingleProduct(`${API}/${url}`);
   },[])
   
   console.log(singleProperty)
-  const {city,aboutProject,configuration,location,maxCovered_Area,minCovered_Area,price,projectName,rera_No,status,photo,amentites,floorPlan,sitePlan,locationMap,BHK_details} = singleProperty;
+  const {city,aboutProject,configuration,location,maxCovered_Area,minCovered_Area,price,projectName,rera_No,status,photo,amentites,floorPlan,sitePlan,builderName,locationMap,BHK_details} = singleProperty;
   
   if(isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap){
     return( 
@@ -52,7 +52,7 @@ function MiddleMain() {
       )
   }
   const StatusFinal = status.charAt(0).toUpperCase() + status.slice(1);
-  const properties = [1, 2, 3, 4, 5, 6, 7, 8];
+  
   const amenitiesFinal=amentites[0].split(",");
   console.log(BHK_details)
   
@@ -129,9 +129,6 @@ function MiddleMain() {
         <div className='OsMP' id='overview'>
           <div className='topEst lmN'>
             <div style={{ display: "flex" }}>
-              <div className='cmP'>
-                <img src={Image2} alt='Builder  Image' className='sjMM' style={{width:"100%"}} />
-              </div>
               <div className='cnMO'>
                 <h1
                   className='titleMB'
@@ -679,7 +676,7 @@ const Wrapper = styled.section`
   }
   .sideNavBarSe {
     position: sticky;
-    top: 5%;
+    top: 7%;
   }
   .OsMP {
     flex: 80%;
@@ -748,8 +745,7 @@ const Wrapper = styled.section`
     padding-left: 50px;
   }
   .cnMO {
-    margin-left: 60px;
-    padding-left: 50px;
+    padding-left: 35px;
     border-left: 1px solid grey;
   }
   p {

@@ -16,7 +16,6 @@ import Profile from './Components/ProfileSec_Components/Profile';
 import FinalNavBar from './Components/HomePageComponents/NavBar';
 import Footer from './Components/Actual_Components/Footer';
 import PageNotFound from './Pages/PageNotFound';
-import ViewProperty from './Components/AdminPanelComponents/ViewProperty';
 import EditableProperty from './Components/AdminPanelComponents/EditableProperty';
 import CurrentNavBar from './Components/HomePageComponents/NavBarRough';
 
@@ -30,11 +29,10 @@ function App() {
           <Route path='/login' element={<LoginMain />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/projects' element={<Properties />} />
-          <Route path='/:name/:id' element={<MiddleMain />} />
+          <Route path='/:url' element={<MiddleMain />} />
           <Route path='/blog' element={<BlogMain />} />
           <Route path='/form' element={<VerificationForm />} />
           <Route path='/protected/private/admin' element={<AdminMain />} />
-          <Route path='/protected/private/admin/projectView/:id' element={<ViewProperty />} />
           <Route path='/protected/private/admin/editProject/:id' element={<EditableProperty />} />
           <Route path='/rough' element={<ProfilePage />} />
           <Route path='/blog/:name' element={<SingleBlog />} />

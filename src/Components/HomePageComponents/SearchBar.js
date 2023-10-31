@@ -323,7 +323,7 @@ function SearchBar() {
             Please enter keywords to search for relevant
           </div>
         </div>
-        <Locations />
+        
       </div>
       
     </Wrapper>

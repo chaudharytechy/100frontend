@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Carddev(elem) {
   
-  const {photo,projectName,configuration,location,_id}=elem
+  const {photo,projectName,configuration,location,_id,url}=elem
   if (!elem || !elem.photo || !elem.projectName) {
 
     return (
@@ -14,7 +14,7 @@ function Carddev(elem) {
       </Wrapper>
     );
   }
-  const URLINK=`/${projectName}/${_id}`
+  const URLINK=`/${url}`
   projectName.replaceAll("-"," ");
   return (
     <Wrapper className="section">

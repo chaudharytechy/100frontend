@@ -7,26 +7,26 @@ function SpacesAvailable() {
     <div style={{boxShadow:"0px 0px 30px 0px #0000001a",borderRadius:"25px"}}>
     <div style={{fontSize:"30px",paddingTop:"20px",fontWeight:"600",textAlign:"center"}}>Choose the Best For you</div>
       <div className="_6sknMP">
-        <div className="_ksjMM _1fe1" title="Residencial Property">
+        {/* <div className="_ksjMM _1fe1" title="Residencial Property">
           <p className="_9gncbH">Residencial</p>
           <p className="_4rgjvNN">Property</p>
-        </div>
+  </div> */}
         <div className="_ksjMM _1fe2" title="Residencial Projects">
           <p className="_9gncbH">Residencial</p>
           <p className="_4rgjvNN">Projects</p>
         </div>
-        <div className="_ksjMM _1fe3" title="Coliving Spaces">
+        {/* <div className="_ksjMM _1fe3" title="Coliving Spaces">
           <p className="_9gncbH">CoLiving</p>
           <p className="_4rgjvNN">Spaces</p>
-        </div>
+        </div>*/}
         <div className="_ksjMM _1fe4" title="Commercial Property">
           <p className="_9gncbH">Commercial</p>
-          <p className="_4rgjvNN">Property</p>
+          <p className="_4rgjvNN">Project</p>
         </div>
-        <div className="_ksjMM _1fe5" title="Commercial Projects">
+        {/*<div className="_ksjMM _1fe5" title="Commercial Projects">
           <p className="_9gncbH">Commercial</p>
           <p className="_4rgjvNN">Projects</p>
-        </div>
+        </div>*/}
         <div className="_ksjMM _1fe6" title="Sco Plots">
           <p className="_9gncbH">SCO</p>
           <p className="_4rgjvNN">Plots</p>
