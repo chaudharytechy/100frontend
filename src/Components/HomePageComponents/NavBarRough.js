@@ -26,7 +26,7 @@ function CurrentNavBar() {
           style={{ width: "fit-content", marginBottom: "5px",marginTop: "5px" }}>
           <span style={{paddingRight:"5px"}} className="phoneIconAnimation"><FiPhoneCall strokeWidth={3} color="white" size={18}/></span>
           <span>
-          <a href="tel:+4733378901"  className="p-1" style={{color:"white",fontSize:"18px"}}>9811750130</a>
+          <a href="tel:+919811750130"  className="p-1" style={{color:"white",fontSize:"18px",fontWeight:"bold"}}>9811750130</a>
           </span>
           <HiBars3 size={35} color='white' onClick={() => setShowNav(!showNav)} />
         </div>
