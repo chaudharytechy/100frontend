@@ -99,7 +99,7 @@ export default function Footer() {
               </p>
               <p>
                 <MDBIcon icon="envelope" className="me-3" />
-                100acress@gmail.com
+                info@100acress.com
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" /> + 91 98117 50130
