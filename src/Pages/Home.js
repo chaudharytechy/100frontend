@@ -11,14 +11,49 @@ import DeveloperSlider from "../Components/HomePageComponents/DeveloperSlider";
 import OurServices from "../Components/HomePageComponents/ourServices";
 import { useProductContext } from "../Context/productContext";
 import SimilarCarousel from "../Components/HomePageComponents/SimiliarCarousel";
+import { Helmet } from 'react-helmet';
 
 
 function Home() {
-  const {PreLaunchProperties,isPreLaunchLoading,getPreLaunchProducts,PreLuanchFeatProperties,PreLuanchSimilarProperties} = useProductContext();
-   
+  const { PreLaunchProperties, isPreLaunchLoading, getPreLaunchProducts, PreLuanchFeatProperties, PreLuanchSimilarProperties } = useProductContext();
+
   console.log(PreLuanchSimilarProperties)
   return (
     <Wrapper className='section'>
+      <Helmet>
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Property in Gurgaon, Buy Sell Property in India, Real Estate - 100acress.com</title>
+        <meta
+          name="description"
+          content="100acress.com Gurgaon Fastest Growing Property Website, Buy Residential & Commercial Property in Gurgaon. Flats in Gurgaon. Real Estate in Gurgaon"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google" content="notranslate" />
+        <meta name="author" content="100acress" />
+        <meta name="copyright" content="100acress" />
+        <meta name="robots" content="index, follow" />
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="100acress" />
+        <meta
+          property="og:title"
+          content="Property in Gurgaon, Luxury Properties in Gurgaon, Real Estate"
+        />
+        <meta property="og:image" content="assets/images/og.png" />
+        <meta property="og:url" content="https://www.100acress.com" />
+        <meta
+          property="og:description"
+          content="Buy Residential Commercial Property in Gurgaon. Buy SCO Plots, Real Estate in Gurgaon"
+        />
+        {/* Twitter Card  */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@100acressdotcom" />
+        <meta name="twitter:title" content="100acress.com" />
+        <meta
+          name="twitter:description"
+          content="Buy Residential Commercial Property in Gurgaon. Buy SCO Plots, Real Estate in Gurgaon"
+        />
+      </Helmet>
       <div
         style={{
           height: "80vh",
@@ -103,11 +138,11 @@ function Home() {
       </div>
       <DeveloperSlider />
       <div>
-      <div>
-      <a href="https://api.whatsapp.com/send?phone=9811750130" class="dd-m-whatsapp">
-        <span class="icon"></span>
-      </a>
-      </div>
+        <div>
+          <a href="https://api.whatsapp.com/send?phone=9811750130" class="dd-m-whatsapp">
+            <span class="icon"></span>
+          </a>
+        </div>
       </div>
     </Wrapper>
   );
