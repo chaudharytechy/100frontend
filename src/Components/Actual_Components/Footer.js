@@ -82,11 +82,9 @@ export default function Footer() {
                 </a>
               </p>
               <p>
-              <Link to={ADMIN} style={{color:"#757575"}}>
                 <div href='#!' className='text-reset' >
                   Careers
                 </div>
-                </Link>
               </p>
               <p>
                 <a href='#!' className='text-reset'>

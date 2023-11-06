@@ -34,7 +34,7 @@ function FeaturedSection() {
               <div className="_1Hy63 d-flex justify-content-between align-items-center">
               <div style={{width:"fit-content"}}> 
                 <p className='smallText _2rhE- li-ht-22'>{name} · 2023 · {Status}</p>
-                <p className='smallText _2rhE- li-ht-22'>74 units · {Configurations}</p>
+                <p className='smallText _2rhE- li-ht-22'>{Configurations}</p>
               </div>
               </div>
             </div>

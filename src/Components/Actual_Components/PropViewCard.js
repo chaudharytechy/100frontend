@@ -5,14 +5,14 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 function PropViewCard(elem) {
-  const{photo,minCovered_Area,configuration,aboutProject,projectName,location,featured,price,_id,url} =elem;
+  const{photo,minCovered_Area,maxCovered_Area,configuration,aboutProject,projectName,location,featured,price,_id,url} =elem;
   
   const fullText =aboutProject;
   let [showFullText, setShowFullText] = useState(false);
   let [displayText, setDisplayText] = useState(fullText.slice(0, 60));
   let [isBookmarked, setIsBookmarked] = useState(false);
   
-  
+  let covPrice = (price*10000000)/minCovered_Area;
   const toggleText = () => {
     setShowFullText(!showFullText);
     setDisplayText(showFullText ? fullText.slice(0, 60) : fullText);
@@ -91,14 +91,14 @@ function PropViewCard(elem) {
               style={{ width: "85%" }}>
               <div className='BhCl d-flex flex-column'>
                 <span className='ft-sz-15 font-weight-bold'>₹ {price} CR</span>
-                <span className='ft-sz-10 ft-cl-gr'>₹ 34,570/sq.ft</span>
+                <span className='ft-sz-10 ft-cl-gr'>₹ {Math.ceil(covPrice)} /sq.ft</span>
               </div>
               <div className='BhCl d-flex flex-column'>
                 <span className='ft-sz-15 font-weight-bold'>{minCovered_Area} Sq.ft</span>
-                <span className='ft-sz-10 ft-cl-gr'>(54.47 sq.m)Plot Area</span>
+                <span className='ft-sz-10 ft-cl-gr'>{maxCovered_Area} Sq.ft (max)</span>
               </div>
               <div className='BhCl d-flex flex-column'>
-                <span className='ft-sz-15 font-weight-bold'>{configuration}</span>
+                <span className='ft-sz-15 font-weight-bold'>{configuration.replaceAll("-",",")}</span>
                 <span className='ft-sz-10 ft-cl-gr'>3 Baths</span>
               </div>
             </div>

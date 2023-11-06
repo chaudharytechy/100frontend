@@ -1,16 +1,14 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import Image from "../../Images/naomi-hebert-MP0bgaS_d1c-unsplash.jpg";
-import Image2 from "../../Images/M3M-Foundation-Rise-Logo-black.png";
-import Image3 from "../../Images/2BHK_NORTH_FACING.jpg";
 import Carddev from "../../Components/Actual_Components/Carddev";
 import { ScrollingCarousel, Carousel } from "@trendyol-js/react-carousel";
 import Avatar from "../../Images/businesswoman-character-avatar-icon-vector-12800166.jpg";
-import ImageLocation from "../../Images/location-map.webp";
-import GuardPNG from "../../Images/guard.png"
-import {useParams} from "react-router-dom"
-import { InfinitySpin } from  'react-loader-spinner'
-import {Helmet} from "react-helmet";
+import { useParams } from "react-router-dom";
+import { InfinitySpin } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
+import axios from "axios";
 
 import {
   MDBValidation,
@@ -23,40 +21,70 @@ import {
 import { useProductContext } from "../../Context/productContext";
 import CourselBhk from "./CourselBhk";
 
-const API= "https://api.100acress.com/preLaunch/view";
+const API = "https://api.100acress.com/preLaunch/view";
+const FORMAPIDATA = "https://api.100acress.com/userInsert";
 
 function MiddleMain() {
-  const {singleProperty,isSingleLoading,getSingleProduct,PreLuanchSimilarProperties,PreLuanchFeatProperties} = useProductContext();
-  const {url} = useParams();
-  
-  const [formValue, setFormValue] = useState({
-    fname: "",
-    emailSet: "",
-    pno: "",
-  });
+  const {
+    singleProperty,
+    isSingleLoading,
+    getSingleProduct,
+    PreLuanchSimilarProperties,
+    PreLuanchFeatProperties,
+  } = useProductContext();
+  const { url } = useParams();
+
   // /6532189ff327f901afad1f55
-  function handleEmailInput(){
-    window.open('mailto:cs@100acress.com');
+  function handleEmailInput() {
+    window.open("mailto:cs@100acress.com");
   }
-  useEffect(()=>{
+  useEffect(() => {
     getSingleProduct(`${API}/${url}`);
-  },[])
-  
-  console.log(singleProperty)
-  const {city,aboutProject,configuration,location,maxCovered_Area,minCovered_Area,price,projectName,rera_No,status,photo,amentites,floorPlan,sitePlan,builderName,locationMap,BHK_details,Aboutdeveloper, meta_title,meta_description} = singleProperty;
-  
-  if(isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap){
-    return( 
-      <div style={{margin:"30vh 30vw 30vh 43vw"}}>
-        <InfinitySpin width='500' color="red"/>
+  }, []);
+
+  const {
+    city,
+    aboutProject,
+    configuration,
+    location,
+    maxCovered_Area,
+    minCovered_Area,
+    price,
+    projectName,
+    rera_No,
+    status,
+    photo,
+    amentites,
+    floorPlan,
+    sitePlan,
+    builderName,
+    locationMap,
+    BHK_details,
+    Aboutdeveloper,
+    meta_title,
+    meta_description,
+  } = singleProperty;
+
+  const [formValue, setFormValue] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    projectName: projectName,
+    address: location,
+  });
+
+  console.log(meta_description, meta_title);
+  if (isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap) {
+    return (
+      <div style={{ margin: "30vh 30vw 30vh 43vw" }}>
+        <InfinitySpin width='500' color='red' />
       </div>
-      )
+    );
   }
   const StatusFinal = status.charAt(0).toUpperCase() + status.slice(1);
-  
-  const amenitiesFinal=amentites[0].split(",");
-  console.log(BHK_details)
-  
+
+  const amenitiesFinal = amentites[0].split(",");
+
   const onChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
@@ -97,12 +125,28 @@ function MiddleMain() {
     });
   };
 
+  function submitFormData(e) {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: FORMAPIDATA,
+      data: formValue,
+    })
+      .then((res) => {
+        console.log(res.data.message);
+        alert("Your Message has been sent!");
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
+
   return (
     <Wrapper className='section'>
-    <Helmet>
-      <title>{meta_title}</title>
-      <meta name="description" content={meta_description} />
-    </Helmet>
+      <Helmet>
+        <title>{meta_title}</title>
+        <meta name='description' content={meta_description} />
+      </Helmet>
       <div className='dkmseujM d-flex'>
         <div className='SideMenu position-relative'>
           <ul className='sideNavBarSe'>
@@ -135,22 +179,21 @@ function MiddleMain() {
           <div className='topEst lmN'>
             <div style={{ display: "flex" }}>
               <div className='cnMO'>
-                <h1
-                  className='titleMB'
-                  >
-                  {projectName}
-                </h1>
+                <h1 className='titleMB'>{projectName}</h1>
                 <span>{location}</span>
               </div>
             </div>
             <div className='ndMO'>₹ {price} Cr</div>
           </div>
           <div>
-          <img src={photo[0].url} alt="" style={{width:"100%",borderRadius:"15px",height:"500px"}}/>
+            <img
+              src={photo[0].url}
+              alt=''
+              style={{ width: "100%", borderRadius: "15px", height: "500px" }}
+            />
           </div>
           <div className='fdLopKl'>
-            <div className='grid bxRP'>
-            </div>
+            <div className='grid bxRP'></div>
           </div>
           <div className='gridBtm'>
             <div className='mlsM'>
@@ -171,7 +214,9 @@ function MiddleMain() {
             </div>
             <div className='mlsM'>
               <span>Covered Area</span>
-              <p className='NNO'>{minCovered_Area} Sq.ft. - {maxCovered_Area} Sq.Ft.</p>
+              <p className='NNO'>
+                {minCovered_Area} Sq.ft. - {maxCovered_Area} Sq.Ft.
+              </p>
             </div>
           </div>
           <div className='cnMKidNM'>
@@ -179,9 +224,7 @@ function MiddleMain() {
               <div id='about-project'>
                 <div className='TopElM ldM'>
                   <p>About Project</p>
-                  <span className='discR'>
-                    {aboutProject}
-                  </span>
+                  <span className='discR'>{aboutProject}</span>
                 </div>
               </div>
 
@@ -191,19 +234,20 @@ function MiddleMain() {
                     <div>
                       <p>Floor Plans</p>
                     </div>
-                    
                   </div>
                   <div className='d-flex'>
-                    <Carousel show={1} slide={1} swiping={true} dynamic={true} rightArrow={<div className="cmNIdpO">{">"}</div>} leftArrow={<div className="cmNIdpO">{"<"}</div>}>
-                      {BHK_details.map((elem)=>{
-                        return (
-                          <CourselBhk key={elem._id} {...elem}/>
-                          
-                          )
+                    <Carousel
+                      show={1}
+                      slide={1}
+                      swiping={true}
+                      dynamic={true}
+                      rightArrow={<div className='cmNIdpO'>{">"}</div>}
+                      leftArrow={<div className='cmNIdpO'>{"<"}</div>}>
+                      {BHK_details.map((elem) => {
+                        return <CourselBhk key={elem._id} {...elem} />;
                       })}
                     </Carousel>
                   </div>
-                  
                 </div>
               </div>
 
@@ -262,17 +306,17 @@ function MiddleMain() {
                 <div className='TopElM ldM'>
                   <p>Amenities</p>
                   <span className='discR'>
-                    {projectName} {city} presents an exclusive opportunity
-                    to own a stunning home that offers all kinds of amenities
-                    and facilities. This includes a swimming pool, school, and
-                    easy access to solar lighting.
+                    {projectName} {city} presents an exclusive opportunity to
+                    own a stunning home that offers all kinds of amenities and
+                    facilities. This includes a swimming pool, school, and easy
+                    access to solar lighting.
                   </span>
                   <div
                     className='d-flex dgdmPmc'
                     style={{ flexWrap: "wrap", marginTop: "20px" }}>
                     {amenitiesFinal.map((item) => {
-                      var Elem=item.toUpperCase()
-                      
+                      var Elem = item.toUpperCase();
+
                       return (
                         <div
                           style={{
@@ -282,17 +326,14 @@ function MiddleMain() {
                             alignItems: "center",
                             margin: "5px 7px",
                             border: "1px solid grey",
-                            
                           }}
                           className='d-flex bor-red-20 bo-shdw dgGGH'>
                           <span className='amenIcon w-50 dis-blc'>
-                            <span className='w-100 h-auto'>
-                              
-                            </span>
+                            <span className='w-100 h-auto'></span>
                           </span>
                           <span
                             className='amenText'
-                            style={{ color: "initial",fontSize:"15px" }}>
+                            style={{ color: "initial", fontSize: "15px" }}>
                             {Elem}
                           </span>
                         </div>
@@ -305,9 +346,9 @@ function MiddleMain() {
               <div id='similar-properties'>
                 <div className='TopElM ldM'>
                   <p style={{ marginBottom: "17px" }}>Similar Properties</p>
-                  <ScrollingCarousel swiping={true} >
+                  <ScrollingCarousel swiping={true}>
                     {PreLuanchSimilarProperties.map((elem) => {
-                      return <Carddev key={elem.id} {...elem}/>;
+                      return <Carddev key={elem.id} {...elem} />;
                     })}
                   </ScrollingCarousel>
                   <div style={{ marginTop: "20px" }} className='MMcnCSS'>
@@ -339,10 +380,12 @@ function MiddleMain() {
 
               <div id='viewed-similar-properties'>
                 <div className='TopElM ldM'>
-                  <p style={{ marginBottom: "17px" }}>People who viewed this also viewed</p>
+                  <p style={{ marginBottom: "17px" }}>
+                    People who viewed this also viewed
+                  </p>
                   <ScrollingCarousel swiping={true}>
                     {PreLuanchFeatProperties.map((elem) => {
-                      return <Carddev key={elem.id} {...elem}/>;
+                      return <Carddev key={elem.id} {...elem} />;
                     })}
                   </ScrollingCarousel>
                   <div style={{ marginTop: "20px" }} className='MMcnCSS'>
@@ -412,9 +455,7 @@ function MiddleMain() {
                 <div className='TopElM ldM'>
                   <p>About Developer</p>
                   <div className='d-flex dfvb'>
-                    <span className='discR'>
-                     {Aboutdeveloper}
-                    </span>
+                    <span className='discR'>{Aboutdeveloper}</span>
                   </div>
                 </div>
               </div>
@@ -424,80 +465,84 @@ function MiddleMain() {
                 <p style={{ marginBottom: "0px" }}>Yes, I'm Interested !</p>
                 <span>Know More About this property</span>
                 <div style={{ marginTop: "10px" }}>
-                  <MDBValidation className='row g-3'>
-                    <MDBValidationItem
-                      className='col-md-12'
-                      feedback='Please enter your Name'
-                      invalid>
-                      <MDBInput
-                        value={formValue.fname}
-                        name='fname'
-                        onChange={onChange}
-                        id='validationCustom01'
-                        required
-                        className='typeReset'
-                        label='Full Name'
-                      />
-                    </MDBValidationItem>
-                    <MDBValidationItem
-                      className='col-md-12'
-                      feedback='Please provide with the appropriate'
-                      invalid>
-                      <MDBInput
-                        onChange={onChange}
-                        value={formValue.emailSet}
-                        label='Email'
-                        id='typeEmail'
-                        className='typeReset'
-                        name='emailSet'
-                        required
-                        type='email'
-                      />
-                    </MDBValidationItem>
-                    <MDBValidationItem className='col-md-12'>
-                      <MDBInputGroup textBefore='+91'>
+                  <form onSubmit={submitFormData}>
+                    <MDBValidation className='row g-3'>
+                      <MDBValidationItem
+                        className='col-md-12'
+                        feedback='Please enter your Name'
+                        invalid>
                         <MDBInput
-                          label='Phone number'
-                          value={formValue.pno}
-                          className='typeReset'
-                          id='typePhone'
-                          pattern='/d*'
-                          name='pno'
-                          onKeyPress={(e) => {
-                            if (e.target.value.length > 9) {
-                              e.preventDefault();
-                            }
-                          }}
-                          type='number'
+                          value={formValue.fname}
+                          name='name'
                           onChange={onChange}
+                          id='validationCustom01'
+                          required
+                          className='typeReset'
+                          label='Full Name'
+                        />
+                      </MDBValidationItem>
+                      <MDBValidationItem
+                        className='col-md-12'
+                        feedback='Please provide with the appropriate'
+                        invalid>
+                        <MDBInput
+                          onChange={onChange}
+                          value={formValue.emailSet}
+                          label='Email'
+                          id='typeEmail'
+                          className='typeReset'
+                          name='email'
+                          required
+                          type='email'
+                        />
+                      </MDBValidationItem>
+                      <MDBValidationItem className='col-md-12'>
+                        <MDBInputGroup textBefore='+91'>
+                          <MDBInput
+                            label='Phone number'
+                            value={formValue.pno}
+                            className='typeReset'
+                            id='typePhone'
+                            pattern='/d*'
+                            name='mobile'
+                            onKeyPress={(e) => {
+                              if (e.target.value.length > 9) {
+                                e.preventDefault();
+                              }
+                            }}
+                            type='number'
+                            onChange={onChange}
+                            required
+                          />
+                        </MDBInputGroup>
+                      </MDBValidationItem>
+
+                      <MDBValidationItem
+                        className='col-12'
+                        feedback='You must agree before submitting.'
+                        invalid>
+                        <MDBCheckbox
+                          label='Agree to terms and conditions'
+                          id='invalidCheck'
                           required
                         />
-                      </MDBInputGroup>
-                    </MDBValidationItem>
+                      </MDBValidationItem>
 
-                    <MDBValidationItem
-                      className='col-12'
-                      feedback='You must agree before submitting.'
-                      invalid>
-                      <MDBCheckbox
-                        label='Agree to terms and conditions'
-                        id='invalidCheck'
-                        required
-                      />
-                    </MDBValidationItem>
-
-                    <div className='col-12'>
-                      <MDBBtn type='submit' color="danger">Submit</MDBBtn>
-                      <MDBBtn
-                      outline
-                        type='reset'
-                        color='danger'
-                        className='ml-2'
-                        onClick={handleResetClick}>
-                        Reset
-                      </MDBBtn>
-                    </div>
-                  </MDBValidation>
+                      <div className='col-12'>
+                        <MDBBtn type='submit' color='danger'>
+                          Submit
+                        </MDBBtn>
+                        <MDBBtn
+                          outline
+                          type='reset'
+                          color='danger'
+                          className='ml-2'
+                          onClick={handleResetClick}>
+                          Reset
+                        </MDBBtn>
+                      </div>
+                    </MDBValidation>
+                  </form>
                 </div>
               </div>
               <div className='drX bSp d-flex bor-red-20'>
@@ -506,7 +551,13 @@ function MiddleMain() {
                 </div>
                 <div style={{ marginLeft: "20px" }}>
                   <span>Get In Touch</span>
-                  <p style={{ marginBottom: "0px", fontSize: "medium", cursor:"pointer" }} onClick={handleEmailInput}>
+                  <p
+                    style={{
+                      marginBottom: "0px",
+                      fontSize: "medium",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleEmailInput}>
                     cs@100acress.com
                   </p>
                 </div>
@@ -661,14 +712,14 @@ const Wrapper = styled.section`
     margin-right: 10vw;
     margin-top: 5vh;
   }
-  .cnMO>.titleMB{
-    font-size:x-large;
-    font-weight:600;
+  .cnMO > .titleMB {
+    font-size: x-large;
+    font-weight: 600;
   }
   .SideMenu {
     flex: 20%;
-    min-width:200px;
-    max-width:254px;
+    min-width: 200px;
+    max-width: 254px;
   }
   .sideNavBarSe {
     position: sticky;
@@ -676,7 +727,7 @@ const Wrapper = styled.section`
   }
   .OsMP {
     flex: 80%;
-    max-width:1154px;
+    max-width: 1154px;
   }
   .dis-blc {
     display: block;
@@ -713,17 +764,17 @@ const Wrapper = styled.section`
     list-style-type: none;
     color: grey;
   }
-  .lIst_Hover >a{
-    color:grey !important;
+  .lIst_Hover > a {
+    color: grey !important;
   }
-  .lIst_Hover >a:hover{
-    color:red !important;
+  .lIst_Hover > a:hover {
+    color: red !important;
     cursor: pointer;
   }
   .sideNavBarSe > .lIst_Hover {
     padding: 0.6rem;
   }
-  .sideNavBarSe > .lIst_Hover:hover{
+  .sideNavBarSe > .lIst_Hover:hover {
     cursor: pointer;
     color: red !important;
   }
@@ -850,7 +901,7 @@ const Wrapper = styled.section`
     margin: 3px;
     color: grey;
   }
-  
+
   .Posum {
     width: 60%;
   }
@@ -943,7 +994,7 @@ const Wrapper = styled.section`
     margin: 8px auto;
   }
   .upload {
-    --btn-color: #3B71CA;
+    --btn-color: #3b71ca;
     --progress-color: #2d334c;
     --ease-in-out-quartic: cubic-bezier(0.77, 0, 0.175, 1);
     position: relative;
@@ -954,8 +1005,8 @@ const Wrapper = styled.section`
     overflow: hidden;
     transform: rotate(0);
   }
-  .ml-2{
-    margin-left:.5rem;
+  .ml-2 {
+    margin-left: 0.5rem;
   }
   .upload__info {
     display: flex;
@@ -980,8 +1031,8 @@ const Wrapper = styled.section`
     cursor: pointer;
     transform: scale(0.9);
   }
-  .cmNIdpO:hover{
-    cursor:pointer;
+  .cmNIdpO:hover {
+    cursor: pointer;
   }
   .upload__button::before {
     position: absolute;
@@ -994,7 +1045,7 @@ const Wrapper = styled.section`
     background-color: #dc4c64;
     border-radius: inherit;
     transform-origin: right;
-    box-shadow:0 4px 9px -4px #dc4c64;
+    box-shadow: 0 4px 9px -4px #dc4c64;
   }
   .upload__hint {
     position: absolute;
@@ -1123,80 +1174,77 @@ const Wrapper = styled.section`
       transform: scaleX(1) translateY(10%);
     }
   }
-  
-  
+
   @media screen and (max-width: 900px) {
-    .stickyBar{
-      display:none;
+    .stickyBar {
+      display: none;
     }
-    .cnMKidNM{
-      display:block;
+    .cnMKidNM {
+      display: block;
     }
-    .dkmseujM{
-      flex-direction:column;
-      margin-right:1vw;
-      margin-left:1vw;
+    .dkmseujM {
+      flex-direction: column;
+      margin-right: 1vw;
+      margin-left: 1vw;
     }
-    .sideNavBarSe{
-      display:flex;
+    .sideNavBarSe {
+      display: flex;
     }
-    .sideNavBarSe>li{
-      width:fit-width;
+    .sideNavBarSe > li {
+      width: fit-width;
     }
-    .ldM{
-      margin-right:10px;
-      margin-left:10px;
+    .ldM {
+      margin-right: 10px;
+      margin-left: 10px;
     }
-    .SideMenu{
-      max-width:none;
-      overflow:auto;
+    .SideMenu {
+      max-width: none;
+      overflow: auto;
     }
-    
-    .cnMO{
-      margin-left:20px;
-      padding-left:18px;
+
+    .cnMO {
+      margin-left: 20px;
+      padding-left: 18px;
     }
-    .cnMO>.titleMB{
-      font-size:large;
+    .cnMO > .titleMB {
+      font-size: large;
     }
-    .mlsM{
-      padding:3px 10px;
+    .mlsM {
+      padding: 3px 10px;
     }
-    .ndMO{
-      font-size:medium;
+    .ndMO {
+      font-size: medium;
     }
-    .dfvb{
-      flex-direction:column;
-      align-items:center;
+    .dfvb {
+      flex-direction: column;
+      align-items: center;
     }
-    .dfvb>img{
-      width:auto;
-      height:auto;
+    .dfvb > img {
+      width: auto;
+      height: auto;
     }
-    .dgdmPmc{
-      justify-content:space-around;
+    .dgdmPmc {
+      justify-content: space-around;
     }
-    .sideNavBarSe>ul{
-      padding-left:0px !important;
+    .sideNavBarSe > ul {
+      padding-left: 0px !important;
     }
     .SquareAmen {
-      overflow:scroll;
+      overflow: scroll;
     }
   }
-  @media screen and (max-width: 380px) and (min-width: 300px){
-    .dgGGH{
-      max-width:120px !important;
-      margin:10px 12px !important;
+  @media screen and (max-width: 380px) and (min-width: 300px) {
+    .dgGGH {
+      max-width: 120px !important;
+      margin: 10px 12px !important;
     }
-    .sideNavBarSe>ul{
-      padding-left:0rem !important;
+    .sideNavBarSe > ul {
+      padding-left: 0rem !important;
     }
   }
-  @media screen and (max-width: 750px){
-    .fdLopKl{
-      display:none;
+  @media screen and (max-width: 750px) {
+    .fdLopKl {
+      display: none;
     }
   }
 `;
-
-

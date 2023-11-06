@@ -339,6 +339,13 @@ function AdminMain() {
                     Enquiry Section
                   </div>
                   <div
+                    onClick={() => toggleElement("PropEnquirySection")}
+                    className={`listElm ${
+                      selectedTab === "PropEnquirySection" ? "active" : ""
+                    }`}>
+                    Property Enquiries
+                  </div>
+                  <div
                     className={`listElm ${
                       selectedTab === "logOut" ? "active" : ""
                     }`}
@@ -688,9 +695,10 @@ function AdminMain() {
                                   Central Park
                                 </option>
                                 <option value='conscient'>Conscient</option>
+                                <option value='capital'>Capital Developers India</option>
                                 <option value='dlf'>DLF</option>
                                 <option value='experion'>Experion</option>
-                                <option value='elaan'>Elaan</option>
+                                <option value='elan'>Elan</option>
                                 <option value='emaar'>Emaar</option>
                                 <option value='godrej'>Godrej</option>
                                 <option value='herohomes'>Hero Homes</option>
@@ -699,6 +707,7 @@ function AdminMain() {
                                 <option value='mahindra'>Mahindra</option>
                                 <option value='microtech'>Microtech</option>
                                 <option value='orris'>Orris</option>
+                                <option value='omaxe'>Omaxe</option>
                                 <option value='oxirich'>Oxirich</option>
                                 <option value='paras'>Paras</option>
                                 <option value='puri'>Puri</option>
@@ -715,8 +724,10 @@ function AdminMain() {
                                 <option value='tatahousing'>
                                   Tata Housing
                                 </option>
+                                <option value='tribeca_developers'>Tribeca Developers</option>
                                 <option value='vatika'>Vatika</option>
                                 <option value='whiteland'>Whiteland</option>
+                                <option value='32milestone'>32 Milestone</option>
                               </select>
 
                               <div
@@ -1427,7 +1438,8 @@ function AdminMain() {
                                 background: "orange",
                                 padding: "5px 10px",
                                 borderRadius: "10px",
-                              }}>
+                              }}
+                              disabled={submited}>
                               {submited ? "Submitting..." : "Submit"}
                             </button>
                           </form>
@@ -1449,6 +1461,71 @@ function AdminMain() {
                       fontWeight: "bold",
                     }}>
                     Enquiries Received
+                  </div>
+                  <Table striped bordered hover>
+                    <thead>
+                      <tr>
+                        <th>S No.</th>
+                        <th>Name</th>
+                        <th>Phone No.</th>
+                        <th>Email</th>
+                        <th className='text-center'>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {FrontPageEnquiries.map((elem, index) => {
+                        var count = index + 1;
+                        return (
+                          <tr key={index}>
+                            <td>{count}</td>
+                            <td>{elem.name}</td>
+                            <td>+91 {elem.mobile}</td>
+                            <td>{elem.email}</td>
+                            <td className='text-center'>
+                              <button
+                                className='btn btn-sm  px-2'
+                                onClick={() => handleModalShow(index)}>
+                                View
+                              </button>
+                              <button className='btn btn-sm btn-danger px-2'>
+                                Completed
+                              </button>
+                              <Modal
+                                show={showModal === index}
+                                onHide={handleModalClose}
+                                centered>
+                                <Modal.Header closeButton>
+                                  <Modal.Title>Enquiries Detail</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                  <ModalProp key={elem._id} {...elem} />
+                                </Modal.Body>
+                                <Modal.Footer>
+                                  <Button
+                                    variant='secondary'
+                                    onClick={handleModalClose}>
+                                    Close
+                                  </Button>
+                                </Modal.Footer>
+                              </Modal>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </Table>
+                </div>
+              )}
+              {selectedTab === "PropEnquirySection" && (
+                <div className='mainSed'>
+                  <div
+                    className=''
+                    style={{
+                      marginBottom: "10px",
+                      fontSize: "large",
+                      fontWeight: "bold",
+                    }}>
+                    Property Enquiries Received
                   </div>
                   <Table striped bordered hover>
                     <thead>

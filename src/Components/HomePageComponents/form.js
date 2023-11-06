@@ -15,6 +15,7 @@ function FormHome() {
     mobile:"",
     email:"",
     message:"",
+    status:"pending",
   })
 
   function handleMainForm(e){

@@ -62,9 +62,9 @@ const PropertyReducer =(state, action) =>{
             const featuredSimilarData=cleanedPayload.filter((elem)=>{
                 return elem.featured ==="false";
             })
-            const TarcSimilarData=cleanedPayload.filter((elem)=>{
-                return elem.builderName ==="raheja";
-            })
+            const TarcSimilarData = cleanedPayload
+              .filter((elem) => elem.featured === "featured")
+              .slice(0, 4);
             return {
                 ...state,
                 PreLaunchProperties:action.payload,
