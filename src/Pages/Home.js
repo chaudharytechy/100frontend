@@ -33,7 +33,7 @@ function Home() {
           content='100acress.com Gurgaon Fastest Growing Property Website, Buy Residential &amp; Commercial Property in Gurgaon. Flats in Gurgaon. Real Estate in Gurgaon'
         />
         <title>
-          Property in Gurgaon, Luxury Properties in Gurgaon, Real Estate
+          Property in Gurgaon, Buy Sell Property in India, Real Estate - 100acress.com
         </title>
       </Helmet>
       <div
