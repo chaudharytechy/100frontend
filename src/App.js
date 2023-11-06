@@ -29,11 +29,11 @@ function App() {
           <Route path='/login' element={<LoginMain />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/projects' element={<Properties />} />
-          <Route path='/:url' element={<MiddleMain />} />
+          <Route path='/:url/' element={<MiddleMain />} />
           <Route path='/blog' element={<BlogMain />} />
           <Route path='/form' element={<VerificationForm />} />
           <Route path='/protected/private/admin' element={<AdminMain />} />
-          <Route path='/protected/private/admin/editProject/:id' element={<EditableProperty />} />
+          <Route path='/protected/private/admin/editProject/:url' element={<EditableProperty />} />
           <Route path='/rough' element={<ProfilePage />} />
           <Route path='/blog/:name' element={<SingleBlog />} />
           <Route path='/knowabouts' element={<PropertyKnow />} />

@@ -10,6 +10,7 @@ import ImageLocation from "../../Images/location-map.webp";
 import GuardPNG from "../../Images/guard.png"
 import {useParams} from "react-router-dom"
 import { InfinitySpin } from  'react-loader-spinner'
+import {Helmet} from "react-helmet";
 
 import {
   MDBValidation,
@@ -42,7 +43,7 @@ function MiddleMain() {
   },[])
   
   console.log(singleProperty)
-  const {city,aboutProject,configuration,location,maxCovered_Area,minCovered_Area,price,projectName,rera_No,status,photo,amentites,floorPlan,sitePlan,builderName,locationMap,BHK_details} = singleProperty;
+  const {city,aboutProject,configuration,location,maxCovered_Area,minCovered_Area,price,projectName,rera_No,status,photo,amentites,floorPlan,sitePlan,builderName,locationMap,BHK_details,Aboutdeveloper, meta_title,meta_description} = singleProperty;
   
   if(isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap){
     return( 
@@ -98,6 +99,10 @@ function MiddleMain() {
 
   return (
     <Wrapper className='section'>
+    <Helmet>
+      <title>{meta_title}</title>
+      <meta name="description" content={meta_description} />
+    </Helmet>
       <div className='dkmseujM d-flex'>
         <div className='SideMenu position-relative'>
           <ul className='sideNavBarSe'>
@@ -145,9 +150,7 @@ function MiddleMain() {
           </div>
           <div className='fdLopKl'>
             <div className='grid bxRP'>
-              
             </div>
-            
           </div>
           <div className='gridBtm'>
             <div className='mlsM'>
@@ -410,14 +413,7 @@ function MiddleMain() {
                   <p>About Developer</p>
                   <div className='d-flex dfvb'>
                     <span className='discR'>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Maxime odit unde perferendis sunt quas quasi tenetur est
-                      amet consectetur aut. Adipisci blanditiis consequatur ex,
-                      facere dolorem cum aliquid doloribus quaerat! Repellat qui
-                      maxime neque aut blanditiis, voluptates quod voluptas sed
-                      ea earum quo laudantium dicta. Modi nulla autem quibusdam
-                      quam aliquam assumenda pariatur architecto eum nobis culpa
-                      eveniet, laudantium sequi!
+                     {Aboutdeveloper}
                     </span>
                   </div>
                 </div>

@@ -139,7 +139,7 @@ function AboutPage() {
       <img
         src='https://eep.io/images/yzco4xsimv0y/6aZY89JahywcsYcUkC6seq/88f9ad3c2c5004fd2166b1b5b7ee6567/hero_our-story.jpg?w=1520&fm=avif&q=60'
         alt=''
-        style={{ width: "100%" }}
+        style={{ width: "100%",borderRadius:"50px 20px" }}
       />
     </div>
   </div>

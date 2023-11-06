@@ -13,7 +13,7 @@ function StarCard(elem) {
     );
   }
   const{photo,price,city,projectName,location,_id,url} =elem;
-  const Url=`/${url}`
+  const Url=`/${url}/`
   
   return (
     <Wrapper className="section">

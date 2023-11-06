@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import Cities from "../Components/HomePageComponents/Cities";
 import FormHome from "../Components/HomePageComponents/form";
@@ -11,48 +13,28 @@ import DeveloperSlider from "../Components/HomePageComponents/DeveloperSlider";
 import OurServices from "../Components/HomePageComponents/ourServices";
 import { useProductContext } from "../Context/productContext";
 import SimilarCarousel from "../Components/HomePageComponents/SimiliarCarousel";
-import { Helmet } from 'react-helmet';
-
+import { Helmet } from "react-helmet";
 
 function Home() {
-  const { PreLaunchProperties, isPreLaunchLoading, getPreLaunchProducts, PreLuanchFeatProperties, PreLuanchSimilarProperties } = useProductContext();
+  const {
+    PreLaunchProperties,
+    isPreLaunchLoading,
+    getPreLaunchProducts,
+    PreLuanchFeatProperties,
+    PreLuanchSimilarProperties,
+  } = useProductContext();
 
-  console.log(PreLuanchSimilarProperties)
+  console.log(PreLuanchSimilarProperties);
   return (
     <Wrapper className='section'>
       <Helmet>
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Property in Gurgaon, Buy Sell Property in India, Real Estate - 100acress.com</title>
         <meta
-          name="description"
-          content="100acress.com Gurgaon Fastest Growing Property Website, Buy Residential & Commercial Property in Gurgaon. Flats in Gurgaon. Real Estate in Gurgaon"
+          name='description'
+          content='100acress.com Gurgaon Fastest Growing Property Website, Buy Residential &amp; Commercial Property in Gurgaon. Flats in Gurgaon. Real Estate in Gurgaon'
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google" content="notranslate" />
-        <meta name="author" content="100acress" />
-        <meta name="copyright" content="100acress" />
-        <meta name="robots" content="index, follow" />
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="100acress" />
-        <meta
-          property="og:title"
-          content="Property in Gurgaon, Luxury Properties in Gurgaon, Real Estate"
-        />
-        <meta property="og:image" content="assets/images/og.png" />
-        <meta property="og:url" content="https://www.100acress.com" />
-        <meta
-          property="og:description"
-          content="Buy Residential Commercial Property in Gurgaon. Buy SCO Plots, Real Estate in Gurgaon"
-        />
-        {/* Twitter Card  */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@100acressdotcom" />
-        <meta name="twitter:title" content="100acress.com" />
-        <meta
-          name="twitter:description"
-          content="Buy Residential Commercial Property in Gurgaon. Buy SCO Plots, Real Estate in Gurgaon"
-        />
+        <title>
+          Property in Gurgaon, Luxury Properties in Gurgaon, Real Estate
+        </title>
       </Helmet>
       <div
         style={{
@@ -139,8 +121,10 @@ function Home() {
       <DeveloperSlider />
       <div>
         <div>
-          <a href="https://api.whatsapp.com/send?phone=9811750130" class="dd-m-whatsapp">
-            <span class="icon"></span>
+          <a
+            href='https://api.whatsapp.com/send?phone=9811750130'
+            class='dd-m-whatsapp'>
+            <span class='icon'></span>
           </a>
         </div>
       </div>
@@ -150,29 +134,28 @@ function Home() {
 
 export default Home;
 const Wrapper = styled.section`
-
   @media screen and (max-width: 600px) {
     .xjUWI {
       font-size: x-large;
       margin: 30px 30px !important;
     }
-    .djqwUUJNCO{
-      height:60vh !important;
+    .djqwUUJNCO {
+      height: 60vh !important;
       background-image: url("../../Images/Capture2Mobile.png");
       background-repeat: no-repeat;
-      background-size:cover;
-      background-position:left;
+      background-size: cover;
+      background-position: left;
     }
   }
   @media screen and (max-width: 1800px) and (min-width: 601px) {
     .djqwUUJNCO {
       background-image: url("../../Images/Capture1.png");
       background-repeat: no-repeat;
-      background-size:cover;
+      background-size: cover;
     }
     .dd-m-whatsapp {
       position: fixed;
-      z-index:999;
+      z-index: 999;
       bottom: 40px;
       right: 10px;
       width: 55px;
@@ -184,17 +167,17 @@ const Wrapper = styled.section`
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-         -moz-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
       -webkit-box-pack: center;
       -webkit-justify-content: center;
-         -moz-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       -webkit-border-radius: 50%;
-         -moz-border-radius: 50%;
-              border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
       background-color: #25d366;
       -webkit-transition: 0.3s all ease;
       -o-transition: 0.3s all ease;
@@ -204,30 +187,30 @@ const Wrapper = styled.section`
       text-decoration: none;
       color: #25d366;
     }
-    
+
     .dd-m-whatsapp:hover {
       -webkit-transform: translateY(-5px);
-         -moz-transform: translateY(-5px);
-          -ms-transform: translateY(-5px);
-           -o-transform: translateY(-5px);
-              transform: translateY(-5px);
+      -moz-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
+      -o-transform: translateY(-5px);
+      transform: translateY(-5px);
       -webkit-box-shadow: 0 5px 15px 2px rgba(37, 211, 102, 0.3);
-         -moz-box-shadow: 0 5px 15px 2px rgba(37, 211, 102, 0.3);
-              box-shadow: 0 5px 15px 2px rgba(37, 211, 102, 0.3);
+      -moz-box-shadow: 0 5px 15px 2px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 5px 15px 2px rgba(37, 211, 102, 0.3);
     }
-    
+
     .dd-m-whatsapp .icon {
       width: 50%;
       height: 50%;
       display: block;
       fill: #fff;
       -webkit-transform: translateX(1px);
-         -moz-transform: translateX(1px);
-          -ms-transform: translateX(1px);
-           -o-transform: translateX(1px);
-              transform: translateX(1px);
+      -moz-transform: translateX(1px);
+      -ms-transform: translateX(1px);
+      -o-transform: translateX(1px);
+      transform: translateX(1px);
     }
-    
+
     .dd-m-whatsapp .icon {
       width: 70%;
       height: 70%;

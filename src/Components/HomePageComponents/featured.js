@@ -13,7 +13,7 @@ function FeaturedSection() {
       <div className="Hayein">
         <div className='sshdNBC d-flex justify-content-around align-items-center flex-wrap'>
         {PreLuanchByBuilder.map((elem)=>{
-          const URL=`/${elem.url}`
+          const URL=`/${elem.url}/`
           const name=elem.builderName.charAt(0).toUpperCase() + elem.builderName.slice(1);
           const Status=elem.status.charAt(0).toUpperCase() + elem.status.slice(1);
           const CityUpper = elem.city.charAt(0).toUpperCase() + elem.city.slice(1);

@@ -21,7 +21,7 @@ function PropViewCard(elem) {
     setIsBookmarked(!isBookmarked);
   };
   const urlProject=projectName.toLowerCase().replaceAll(" ","-")
-  const PropApi=`/${url}`
+  const PropApi=`/${url}/`
 
   return (
     <Wrapper className='section'>
