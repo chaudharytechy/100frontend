@@ -14,7 +14,7 @@ function Carddev(elem) {
       </Wrapper>
     );
   }
-  const URLINK=`/${url}`
+  const URLINK=`/${url}/`
   projectName.replaceAll("-"," ");
   return (
     <Wrapper className="section">
