@@ -7,13 +7,15 @@ function CourselBhk(elem) {
     const{build_area,image,input_Bhk,possession} = elem
   return (
     <Wrapper className="div">
+      <div style={{width:"100%"}}>
        <img
         src={image.url}
         alt='Developer Image'
         srcset=''
-        className='flrImg dfdd'
+        className='dfdd'
         width="100%"
   />
+  </div>
        <div className='gridBtm  Posum'>
         <div className='mlsM'>
             <span>Built-Up area</span>
