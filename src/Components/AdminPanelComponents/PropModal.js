@@ -53,6 +53,10 @@ function PropModal(elem) {
           <img src={elem.locationMap.url} alt='' style={{width:"100%",height:"100px"}}/>
         </div>
       </div>
+      <div className='modalText'>Meta Title</div>
+      <div className='modalValues'>{elem.meta_title}</div>
+      <div className='modalText'>Meta Description</div>
+      <div className='modalValues'>{elem.meta_description}</div>
       <div className='modalText'>Amenities</div>
       <div className='modalValues'>{amentitieList}</div>
     </Wrapper>

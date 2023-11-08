@@ -47,7 +47,12 @@ function FormHome() {
           <form onSubmit={submitFormData}>
             <div className='d-flex flex-wrap'>
               <input type='text' name='name' id='name' placeholder='Name*' required onChange={handleMainForm}/>
-              <input type='tel' name='mobile' id='phone' placeholder='Phone*' required onChange={handleMainForm}/>
+              <input type='tel' name='mobile' id='phone' placeholder='Phone*' required onChange={handleMainForm}
+              onKeyPress={(e) => {
+                if (e.target.value.length > 9) {
+                  e.preventDefault();
+                }
+              }} />
               <input type='email' name='email' id='email' placeholder='Email' required onChange={handleMainForm}/>
               <input type="text" name="message" id="message" placeholder="Enter you query" required onChange={handleMainForm}/>
               <input type='submit' value={isLoading ? `Submitting` : "Submit"} />

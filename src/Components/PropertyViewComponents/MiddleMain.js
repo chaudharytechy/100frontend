@@ -34,13 +34,22 @@ function MiddleMain() {
   } = useProductContext();
   const { url } = useParams();
 
-  // /6532189ff327f901afad1f55
   function handleEmailInput() {
     window.open("mailto:cs@100acress.com");
   }
   useEffect(() => {
     getSingleProduct(`${API}/${url}`);
   }, []);
+
+  useEffect(() => {
+    if (singleProperty) {
+      setFormValue((prevFormValue) => ({
+        ...prevFormValue,
+        projectName: singleProperty.projectName || "",
+        address: singleProperty.location || "",
+      }));
+    }
+  }, [singleProperty]);
 
   const {
     city,
@@ -57,7 +66,6 @@ function MiddleMain() {
     amentites,
     floorPlan,
     sitePlan,
-    builderName,
     locationMap,
     BHK_details,
     Aboutdeveloper,
@@ -65,15 +73,18 @@ function MiddleMain() {
     meta_description,
   } = singleProperty;
 
+  const [isProjectName,setProjectName] = useState("");
+  
+ 
   const [formValue, setFormValue] = useState({
     name: "",
     email: "",
     mobile: "",
-    projectName: projectName,
-    address: location,
+    projectName: isProjectName,
+    address: "",
+    status:"pending",
   });
 
-  console.log(meta_description, meta_title);
   if (isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap) {
     return (
       <div style={{ margin: "30vh 30vw 30vh 43vw" }}>
@@ -81,18 +92,22 @@ function MiddleMain() {
       </div>
     );
   }
-  const StatusFinal = status.charAt(0).toUpperCase() + status.slice(1);
+  
+  
 
+  const StatusFinal = status.charAt(0).toUpperCase() + status.slice(1);
+  
   const amenitiesFinal = amentites[0].split(",");
 
   const onChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
+    console.log(formValue);
   };
   const handleResetClick = () => {
     setFormValue({
-      fname: "",
-      pno: "",
-      emailSet: "",
+      name: "",
+      email: "",
+      mobile: "",
     });
   };
 
@@ -215,7 +230,7 @@ function MiddleMain() {
             <div className='mlsM'>
               <span>Covered Area</span>
               <p className='NNO'>
-                {minCovered_Area} Sq.ft. - {maxCovered_Area} Sq.Ft.
+                {minCovered_Area} Sq.Ft. - {maxCovered_Area} Sq.Ft.
               </p>
             </div>
           </div>
@@ -460,91 +475,106 @@ function MiddleMain() {
                 </div>
               </div>
             </div>
+            
             <div className='stickyBar mTmB'>
               <div className='prX bSp bor-red-20'>
-                <p style={{ marginBottom: "0px" }}>Yes, I'm Interested !</p>
-                <span>Know More About this property</span>
-                <div style={{ marginTop: "10px" }}>
-                  <form onSubmit={submitFormData}>
-                    <MDBValidation className='row g-3'>
-                      <MDBValidationItem
-                        className='col-md-12'
-                        feedback='Please enter your Name'
-                        invalid>
+              <p style={{ marginBottom: "0px" }}>Yes, I'm Interested !</p>
+              <span>Know More About this property</span>
+              <div style={{ marginTop: "10px" }}>
+                <form onSubmit={submitFormData}>
+                  {/*<MDBValidation className='row g-3'>
+                    <MDBValidationItem
+                      className='col-md-12'
+                      feedback='Please enter your Name'
+                      invalid>
+                      <MDBInput
+                        
+                        name='name'
+                        onChange={onChange}
+                        id='validationCustom01'
+                        required
+                        className='typeReset'
+                        label='Full Name'
+                      />
+                    </MDBValidationItem>
+                    
+                    <MDBValidationItem
+                      className='col-md-12'
+                      feedback='Please provide with the appropriate'
+                      invalid>
+                      <MDBInput
+                        onChange={onChange}
+                        
+                        label='Email'
+                        id='typeEmail'
+                        className='typeReset'
+                        name='email'
+                        required
+                        type='email'
+                      />
+                    </MDBValidationItem>
+                    
+                    <MDBValidationItem className='col-md-12'>
+                      <MDBInputGroup textBefore='+91'>
                         <MDBInput
-                          value={formValue.fname}
-                          name='name'
-                          onChange={onChange}
-                          id='validationCustom01'
-                          required
+                          label='Phone number'
                           className='typeReset'
-                          label='Full Name'
-                        />
-                      </MDBValidationItem>
-                      <MDBValidationItem
-                        className='col-md-12'
-                        feedback='Please provide with the appropriate'
-                        invalid>
-                        <MDBInput
+                          id='typePhone'
+                          pattern='/d*'
+                          min={0}
+                          name='mobile'
+                          onKeyPress={(e) => {
+                            if (e.target.value.length > 9) {
+                              e.preventDefault();
+                            }
+                          }}
+                          type='number'
                           onChange={onChange}
-                          value={formValue.emailSet}
-                          label='Email'
-                          id='typeEmail'
-                          className='typeReset'
-                          name='email'
-                          required
-                          type='email'
-                        />
-                      </MDBValidationItem>
-                      <MDBValidationItem className='col-md-12'>
-                        <MDBInputGroup textBefore='+91'>
-                          <MDBInput
-                            label='Phone number'
-                            value={formValue.pno}
-                            className='typeReset'
-                            id='typePhone'
-                            pattern='/d*'
-                            name='mobile'
-                            onKeyPress={(e) => {
-                              if (e.target.value.length > 9) {
-                                e.preventDefault();
-                              }
-                            }}
-                            type='number'
-                            onChange={onChange}
-                            required
-                          />
-                        </MDBInputGroup>
-                      </MDBValidationItem>
-
-                      <MDBValidationItem
-                        className='col-12'
-                        feedback='You must agree before submitting.'
-                        invalid>
-                        <MDBCheckbox
-                          label='Agree to terms and conditions'
-                          id='invalidCheck'
                           required
                         />
-                      </MDBValidationItem>
+                      </MDBInputGroup>
+                    </MDBValidationItem>
+                    
 
-                      <div className='col-12'>
-                        <MDBBtn type='submit' color='danger'>
-                          Submit
-                        </MDBBtn>
-                        <MDBBtn
-                          outline
-                          type='reset'
-                          color='danger'
-                          className='ml-2'
-                          onClick={handleResetClick}>
-                          Reset
-                        </MDBBtn>
-                      </div>
-                    </MDBValidation>
-                  </form>
-                </div>
+                    <MDBValidationItem
+                      className='col-12'
+                      feedback='You must agree before submitting.'
+                      invalid>
+                      <MDBCheckbox
+                        label='Agree to terms and conditions'
+                        id='invalidCheck'
+                        required
+                      />
+                    </MDBValidationItem>
+
+                    <div className='col-12'>
+                      <MDBBtn type='submit' color='danger'>
+                        Submit
+                      </MDBBtn>
+                      <MDBBtn
+                        outline
+                        type='reset'
+                        color='danger'
+                        className='ml-2'
+                        onClick={handleResetClick}>
+                        Reset
+                      </MDBBtn>
+                    </div>
+                        </MDBValidation> */}
+                        <input type="text" name='name' onChange={onChange} id='validationCustom01' placeholder="Full Name" required/>
+                        <input type="number" name='mobile' onChange={onChange} id='validationCustom02' placeholder="Mobile Number" onKeyPress={(e) => {
+                          if (e.target.value.length > 9) {
+                            e.preventDefault();
+                          }
+                        }} required/>
+                        <input type="email" name='email' onChange={onChange} id='validationCustom03' placeholder="Email Address"/>
+                        <button type="submit" className="btn btn-primary" id="submitButon">Submit</button>
+                        <button type="reset" onClick={handleResetClick} className="btn btn-outline-secondary">Reset</button>
+                </form>
               </div>
+            </div>
+            
+              
               <div className='drX bSp d-flex bor-red-20'>
                 <div>
                   <img src={Avatar} width={50} alt='Avatar' />
@@ -712,6 +742,35 @@ const Wrapper = styled.section`
     margin-right: 10vw;
     margin-top: 5vh;
   }
+  input {
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    margin-bottom:0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    outline: none;
+    overflow: visible;
+  }
+  input:focus{
+    border-color:red;
+    box-shadow:0px 0px 3px red;
+    tranform:scale(1.2);
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#submitButon{
+  margin-right:0.5rem;
+}
   .cnMO > .titleMB {
     font-size: x-large;
     font-weight: 600;

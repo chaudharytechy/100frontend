@@ -13,8 +13,7 @@ const initialState ={
     isfrontEnquiriesLoading: false,
     SingleFrontPageEnquiry: {},
     isSingleFrontPageLoading: false,
-    ProjectEnquiries: [],
-    isProjectEnquiriesLoading: false,
+    
     isError: false,
 }
 

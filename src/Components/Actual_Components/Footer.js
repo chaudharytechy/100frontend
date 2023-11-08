@@ -115,10 +115,11 @@ export default function Footer() {
       </section>
 
       <div className='text-center p-4 mt-2' style={{ backgroundColor: "red",color:"white" }}>
-        © 2023 Copyright: 
-        <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
-          {" "}100acress.com
+      Copyright © 2023, 
+        <a className='text-reset' href='https://100acress.com/'>
+          {" "}100acress.com. {" "}
         </a>
+        All Rights Reserved
       </div>
     </MDBFooter>
     </Wrapper>
