@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Carddev from "../../Components/Actual_Components/Carddev";
@@ -10,14 +8,6 @@ import { InfinitySpin } from "react-loader-spinner";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 
-import {
-  MDBValidation,
-  MDBValidationItem,
-  MDBInput,
-  MDBInputGroup,
-  MDBBtn,
-  MDBCheckbox,
-} from "mdb-react-ui-kit";
 import { useProductContext } from "../../Context/productContext";
 import CourselBhk from "./CourselBhk";
 
@@ -1259,11 +1249,13 @@ const Wrapper = styled.section`
     .SideMenu {
       max-width: none;
       overflow: auto;
+      display:none;
     }
 
     .cnMO {
-      margin-left: 20px;
-      padding-left: 18px;
+      margin-left: 0px;
+      padding-left: 2px;
+      border:none !important;
     }
     .cnMO > .titleMB {
       font-size: large;

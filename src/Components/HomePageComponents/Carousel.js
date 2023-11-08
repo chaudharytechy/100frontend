@@ -12,7 +12,7 @@ function StarCarousel() {
   if (Elem.length === 0) {
     return (
       <Wrapper className="section">
-        <div>Loading...</div>
+        <div></div>
       </Wrapper>
     );
   }

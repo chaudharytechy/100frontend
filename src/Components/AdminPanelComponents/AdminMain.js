@@ -9,12 +9,13 @@ import PropertyCard from "./PropertyCard";
 import Table from "react-bootstrap/Table";
 import { useEnquiryContext } from "../../Context/enquiryContext";
 import ModalProp from "./ModalProp";
+import ModalProjectProp from "./ModalProjectProp";
 import PropModal from "./PropModal";
 import { Link } from "react-router-dom";
 
 function AdminMain() {
   const { PreLaunchProperties, isPreLaunchLoading } = useProductContext();
-  const { FrontPageEnquiries, isfrontEnquiriesLoading } = useEnquiryContext();
+  const { FrontPageEnquiries, isfrontEnquiriesLoading, ProjectEnquiries, isProjectEnquriesLoading } = useEnquiryContext();
 
   const [loggedIn, setLoggedIn] = useState(true);
   const [show, setShow] = useState(false);
@@ -1542,7 +1543,7 @@ function AdminMain() {
                       </tr>
                     </thead>
                     <tbody>
-                      {FrontPageEnquiries.map((elem, index) => {
+                      {ProjectEnquiries.map((elem, index) => {
                         var count = index + 1;
                         return (
                           <tr key={index}>
@@ -1567,7 +1568,7 @@ function AdminMain() {
                                   <Modal.Title>Enquiries Detail</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                  <ModalProp key={elem._id} {...elem} />
+                                  <ModalProjectProp key={elem._id} {...elem} />
                                 </Modal.Body>
                                 <Modal.Footer>
                                   <Button

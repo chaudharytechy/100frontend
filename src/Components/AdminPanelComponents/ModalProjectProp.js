@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 
-function ModalProp(elem) {
+function ModalProjectProp(elem) {
+    console.log(elem);
     const dateString = elem.createdAt;
     const date = new Date(dateString);
 
@@ -23,15 +24,17 @@ function ModalProp(elem) {
       <div className='modalValues'>+91 {elem.mobile}</div>
       <div className='modalText'>Email Address</div>
       <div className='modalValues'>{elem.email}</div>
-      <div className='modalText'>Message</div>
-      <div className='modalValues'>{elem.message}</div>
+      <div className='modalText'>Project Name</div>
+      <div className='modalValues'>{elem.projectName}</div>
+      <div className='modalText'>Project Address</div>
+      <div className='modalValues'>{elem.address}</div>
       <div className='modalText'>Enquiry Date</div>
       <div className='modalValues'>{formattedDate}</div>
     </Wrapper>
   )
 }
 
-export default ModalProp
+export default ModalProjectProp
 const Wrapper =styled.div`
 .modalText{
     margin:5px 0px;

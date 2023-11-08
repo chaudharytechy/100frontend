@@ -8,7 +8,7 @@ function StarCard(elem) {
 
     return (
       <Wrapper className="section">
-        <div>Loading...</div>
+        <div></div>
       </Wrapper>
     );
   }

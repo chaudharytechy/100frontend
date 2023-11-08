@@ -6,10 +6,22 @@ const FormEnquiryReducer =(state ,action) =>{
                isfrontEnquiriesLoading:true,
             }
 
+        case "PROJECT_ENQUIRIES_LOADING":
+            return{
+                ...state,
+                isProjectEnquriesLoading:true,
+            }
+
         case "SET_SINGLE_FRONTPAGE_LOADING":
             return{
                 ...state,
                 isSingleFrontPageLoading:true,
+            }
+
+        case "SET_SINGLE_PROJECT_LOADING":
+            return{
+                ...state,
+                isSingleProjectEnquriesLoading:true,
             }
         
         case "ALL_FRONT_ENQUIRES":
@@ -19,11 +31,25 @@ const FormEnquiryReducer =(state ,action) =>{
                 isfrontEnquiriesLoading:false,
             }
 
+        case "ALL_PROJECT_ENQUIRIES":
+            return{
+                ...state,
+                ProjectEnquiries:action.payload,
+                isProjectEnquriesLoading:false,
+            }
+
         case "GET_SINGLE_FRONT_ENQUIRY":
             return{
                 ...state,
                 SingleFrontPageEnquiry:action.payload,
                 isSingleFrontPageLoading:false,
+            }
+
+        case "GET_SINGLE_PROJECT_ENQUIRY":
+            return{
+                ...state,
+                SingleProjectEnquries:action.payload,
+                isSingleProjectEnquriesLoading:false,
             }
         
         case "FRONT_ENQUIRY_ERROR":
@@ -33,10 +59,24 @@ const FormEnquiryReducer =(state ,action) =>{
                 isError:true,
             }
 
+        case "PROJECT_ENQUIRIES_ERROR":
+            return{
+                ...state,
+                isProjectEnquriesLoading:false,
+                isError:true,
+            }
+
         case "SINGLE_FRONT_ENQUIRY_ERROR":
             return{
                 ...state,
                 isSingleFrontPageLoading:false,
+                isError:true,
+            }
+
+        case "SINGLE_PROJECT_ENQUIRY_ERROR":
+            return{
+                ...state,
+                isSingleProjectEnquriesLoading:false,
                 isError:true,
             }
     }
