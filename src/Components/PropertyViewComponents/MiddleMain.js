@@ -72,7 +72,7 @@ function MiddleMain() {
     mobile: "",
     projectName: isProjectName,
     address: "",
-    status:"pending",
+    status:"Pending",
   });
 
   if (isSingleLoading || !photo || !floorPlan || !sitePlan || !locationMap) {

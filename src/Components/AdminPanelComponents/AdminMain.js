@@ -12,6 +12,7 @@ import ModalProp from "./ModalProp";
 import ModalProjectProp from "./ModalProjectProp";
 import PropModal from "./PropModal";
 import { Link } from "react-router-dom";
+import AddBHK from "./AddBHKProp";
 
 function AdminMain() {
   const { PreLaunchProperties, isPreLaunchLoading } = useProductContext();
@@ -24,6 +25,7 @@ function AdminMain() {
   const [showForm, setShowForm] = useState(false);
   const [submited, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showBHKModal, setShowBHKModal] = useState(false);
 
   const closeSubmit = () => {
     setSubmitted(false);
@@ -36,6 +38,12 @@ function AdminMain() {
   };
   const handleModalShow = (index) => {
     setShowModal(index);
+  };
+  const handleBHKModalShow = (index) => {
+    setShowBHKModal(index);
+  };
+  const handleBHKModalClose = (index) => {
+    setShowBHKModal(false);
   };
 
   const Elem = [...PreLaunchProperties];
@@ -212,6 +220,7 @@ function AdminMain() {
       <Modal show={show} onHide={handleClose}>
         <Modal.Body style={{ textAlign: "center" }}>{message}</Modal.Body>
       </Modal>
+      
       {!loggedIn ? (
         <div
           style={{
@@ -417,30 +426,50 @@ function AdminMain() {
                                   Edit
                                 </button>
                                 </Link>
-                                <button className='btn btn-sm px-2'>
+                                <button className='btn btn-sm px-2'
+                                onClick={() => handleBHKModalShow(index)}
+                                >
                                   Add Bhk
                                 </button>
                                 <button className='btn btn-sm btn-danger px-2'>
                                   Delete
                                 </button>
                                 <Modal
-                                  show={showModal === index}
-                                  onHide={handleModalClose}
+                                  show={showBHKModal === index}
+                                  onHide={handleBHKModalClose}
                                   centered>
                                   <Modal.Header closeButton>
-                                    <Modal.Title>Project Detail</Modal.Title>
+                                    <Modal.Title>Add Bhk Details</Modal.Title>
                                   </Modal.Header>
                                   <Modal.Body>
-                                    <PropModal key={elem._id} {...elem} />
+                                    <AddBHK key={elem._id} {...elem} />
                                   </Modal.Body>
-                                  <Modal.Footer>
+                                  {/*<Modal.Footer>
                                     <Button
                                       variant='secondary'
-                                      onClick={handleModalClose}>
+                                      onClick={handleBHKModalClose}>
                                       Close
-                                    </Button>
-                                  </Modal.Footer>
+                                    </Button> 
+                                  </Modal.Footer>*/}
                                 </Modal>
+                                <Modal
+                                show={showModal === index}
+                                onHide={handleModalClose}
+                                centered>
+                                <Modal.Header closeButton>
+                                  <Modal.Title>Project Detail</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                  <PropModal key={elem._id} {...elem} />
+                                </Modal.Body>
+                                <Modal.Footer>
+                                  <Button
+                                    variant='secondary'
+                                    onClick={handleModalClose}>
+                                    Close
+                                  </Button>
+                                </Modal.Footer>
+                              </Modal>
                               </td>
                             </tr>
                           );
@@ -1474,6 +1503,7 @@ function AdminMain() {
                         <th>Name</th>
                         <th>Phone No.</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th className='text-center'>Action</th>
                       </tr>
                     </thead>
@@ -1486,6 +1516,7 @@ function AdminMain() {
                             <td>{elem.name}</td>
                             <td>+91 {elem.mobile}</td>
                             <td>{elem.email}</td>
+                            <td>{elem.status}</td>
                             <td className='text-center'>
                               <button
                                 className='btn btn-sm  px-2'
@@ -1539,6 +1570,7 @@ function AdminMain() {
                         <th>Name</th>
                         <th>Phone No.</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th className='text-center'>Action</th>
                       </tr>
                     </thead>
@@ -1551,6 +1583,7 @@ function AdminMain() {
                             <td>{elem.name}</td>
                             <td>+91 {elem.mobile}</td>
                             <td>{elem.email}</td>
+                            <td>{elem.status}</td>
                             <td className='text-center'>
                               <button
                                 className='btn btn-sm  px-2'

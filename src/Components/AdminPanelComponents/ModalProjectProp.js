@@ -30,6 +30,8 @@ function ModalProjectProp(elem) {
       <div className='modalValues'>{elem.address}</div>
       <div className='modalText'>Enquiry Date</div>
       <div className='modalValues'>{formattedDate}</div>
+      <div className='modalText'>Current Status</div>
+      <div className='modalValues'>{elem.status}</div>
     </Wrapper>
   )
 }

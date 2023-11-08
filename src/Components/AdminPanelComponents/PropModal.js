@@ -59,6 +59,8 @@ function PropModal(elem) {
       <div className='modalValues'>{elem.meta_description}</div>
       <div className='modalText'>Amenities</div>
       <div className='modalValues'>{amentitieList}</div>
+      <div className='modalText'>About Developer</div>
+      <div className='modalValues'>{elem.Aboutdeveloper}</div>
     </Wrapper>
   );
 }
