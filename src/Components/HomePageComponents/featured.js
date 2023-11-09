@@ -20,7 +20,7 @@ function FeaturedSection() {
           const Configurations = elem.configuration.replaceAll("-",",")
           return (
             <div className='flex1 mt-3 mb-3'>
-            <Link to={URL}>
+            <Link to={URL} target="_blank">
             <div className='dkMMCKpP'>
               <img
                 src={elem.photo[0].url}
@@ -33,7 +33,7 @@ function FeaturedSection() {
               <p className='ft-cl-gr'>{CityUpper} · {elem.location} </p>
               <div className="_1Hy63 d-flex justify-content-between align-items-center">
               <div style={{width:"fit-content"}}> 
-                <p className='smallText _2rhE- li-ht-22'>{name} · 2023 · {Status}</p>
+                <p className='smallText _2rhE- li-ht-22'>{name} · {Status}</p>
                 <p className='smallText _2rhE- li-ht-22'>{Configurations}</p>
               </div>
               </div>

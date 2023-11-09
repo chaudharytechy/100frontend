@@ -25,16 +25,26 @@ const FormEnquiryReducer =(state ,action) =>{
             }
         
         case "ALL_FRONT_ENQUIRES":
+            const allEnquiries = action.payload;
+            const pendingEnquiries = allEnquiries.filter(enquiry => enquiry.status === "Pending");
+            const nonPendingEnquiries = allEnquiries.filter(enquiry => enquiry.status !== "Pending");
+
+            const sortedEnquiries = [...pendingEnquiries, ...nonPendingEnquiries];
             return{
                 ...state,
-                FrontPageEnquiries:action.payload,
+                FrontPageEnquiries:sortedEnquiries,
                 isfrontEnquiriesLoading:false,
             }
 
         case "ALL_PROJECT_ENQUIRIES":
+            const allProjectEnquiries = action.payload;
+            const pendingProjectEnquiries = allProjectEnquiries.filter(enquiry => enquiry.status === "Pending");
+            const nonPendingProjectEnquiries = allProjectEnquiries.filter(enquiry => enquiry.status !== "Pending");
+
+            const sortedProjectEnquiries = [...pendingProjectEnquiries, ...nonPendingProjectEnquiries];
             return{
                 ...state,
-                ProjectEnquiries:action.payload,
+                ProjectEnquiries:sortedProjectEnquiries,
                 isProjectEnquriesLoading:false,
             }
 

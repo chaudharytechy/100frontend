@@ -17,7 +17,7 @@ function StarCard(elem) {
   
   return (
     <Wrapper className="section">
-    <Link to={Url}>
+    <Link to={Url} target="_blank">
     <div className='w9HDn0'>
       <div className='sQoIH w-100 h-auto'>
         <div className='xjNJ w-100'>

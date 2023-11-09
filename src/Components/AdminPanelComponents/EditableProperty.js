@@ -373,6 +373,7 @@ function EditableProperty() {
                 <option value='aipl'>Aipl</option>
                 <option value='amb'>Amb</option>
                 <option value='ambience'>Ambience</option>
+                <option value='Anantraj Estates and Birla Estates'>Anantraj Estates and Birla Estates</option>
                 <option value='ats'>Ats</option>
                 <option value='Bestech'>Bestech</option>
                 <option value='bptp'>Bptp</option>
@@ -398,6 +399,7 @@ function EditableProperty() {
                 <option value='risland'>Risland</option>
                 <option value='rofGroup'>ROF Group</option>
                 <option value='supertech'>SuperTech</option>
+                <option value='suncity'>Suncity Projects Pvt.Ltd</option>
                 <option value='spaze'>Spaze</option>
                 <option value='shapoorji'>Shapoorji Pallonji</option>
                 <option value='smartworld'>Smart World</option>
